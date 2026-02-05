@@ -55,3 +55,24 @@ footer {
     background-color: #222;
     color: white;
 }
+/* MOBILE RESPONSIVE */
+@media (max-width: 600px) {
+
+    h1 {
+        font-size: 24px;
+    }
+
+    .products {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .product img {
+        width: 120px;
+    }
+
+    .product {
+        padding: 12px;
+    }
+}
+
