@@ -37,7 +37,7 @@ h2 {
 }
 
 .product button {
-    background-color: #6a5acd;
+    background-color: #5a189a;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -52,7 +52,7 @@ h2 {
 footer {
     text-align: center;
     padding: 20px;
-    background-color: #222;
+    background-color: #5a189a;
     color: white;
 }
 /* MOBILE RESPONSIVE */
@@ -75,4 +75,5 @@ footer {
         padding: 12px;
     }
 }
+
 
