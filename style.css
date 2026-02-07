@@ -37,7 +37,7 @@ h2 {
 }
 
 .product button {
-    background-color: #5a189a;
+    background-color: purple;
     color: white;
     border: none;
     padding: 10px 15px;
@@ -75,5 +75,6 @@ footer {
         padding: 12px;
     }
 }
+
 
 
