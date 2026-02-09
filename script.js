@@ -1,40 +1,32 @@
-let cartCount = 0;
-let totalPrice = 0;
+let cart = JSON.parse(localStorage.getItem("cart")) || [];
+let cartCount = document.getElementById("cart-count");
+let cartItems = document.getElementById("cart-items");
+
+function updateCartUI() {
+    cartCount.innerText = cart.length;
+    cartItems.innerHTML = "";
+
+    cart.forEach((item, index) => {
+        let li = document.createElement("li");
+        li.innerHTML = `
+            ${item}
+            <button onclick="removeFromCart(${index})" style="margin-left:10px;">❌</button>
+        `;
+        cartItems.appendChild(li);
+    });
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+}
 
 function addToCart(productName) {
-    const prices = {
-        "Sketch Book": 100,
-        "Doms Colour Pencil": 90,
-        "Crayon": 50,
-        "Paint Brush": 95,
-        "Paint Gloves": 120,
-        "Ink Brush": 399,
-        "Calligraphy Ink Brush": 417
-    };
-
-    cartCount++;
-    totalPrice += prices[productName];
-
-    document.getElementById("cart-count").innerText = cartCount;
-    document.getElementById("total-price").innerText = totalPrice;
-
-    const li = document.createElement("li");
-    li.innerHTML = `
-        ${productName} - ₹${prices[productName]}
-        <button onclick="removeItem(this, ${prices[productName]})"
-        style="margin-left:10px; background:red; color:white; border:none; cursor:pointer;">
-        ❌
-        </button>
-    `;
-
-    document.getElementById("cart-items").appendChild(li);
+    cart.push(productName);
+    updateCartUI();
 }
 
-function removeItem(button, price) {
-    button.parentElement.remove();
-    cartCount--;
-    totalPrice -= price;
-
-    document.getElementById("cart-count").innerText = cartCount;
-    document.getElementById("total-price").innerText = totalPrice;
+function removeFromCart(index) {
+    cart.splice(index, 1);
+    updateCartUI();
 }
+
+// Load cart on page refresh
+updateCartUI();
