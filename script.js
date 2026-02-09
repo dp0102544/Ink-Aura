@@ -1,6 +1,7 @@
 let cartCount = 0;
 
-function addToCart() {
+function addToCart(productName) {
     cartCount++;
-    alert("Item added to cart! 🛒\nTotal items: " + cartCount);
+    document.getElementById("cart-count").innerText = cartCount;
+    alert(productName + " added to cart 🛒");
 }
