@@ -54,13 +54,14 @@ updateCartUI();
 
 // ===== FILTER BY CATEGORY =====
 function filterCategory(category) {
-    document.querySelectorAll(".product").forEach(product => {
-        product.style.display =
-            category === "all" || product.dataset.category === category
-                ? "block"
-                : "none";
+    document.querySelectorAll(".product").forEach(p => {
+        p.style.display = (category === "all" || p.dataset.category === category) ? "block" : "none";
+    });
+    document.querySelectorAll(".filters button").forEach(btn => {
+        btn.classList.toggle("active", btn.textContent.toLowerCase().includes(category));
     });
 }
+
 
 // ===== SEARCH PRODUCTS =====
 function searchProducts() {
@@ -70,3 +71,4 @@ function searchProducts() {
         product.style.display = name.includes(input) ? "block" : "none";
     });
 }
+
