@@ -176,6 +176,11 @@ h2 {
     background: purple;
     color: white;
 }
+.filters button.active {
+    background: purple;
+    color: white;
+    font-weight: bold;
+}
 
 /* ===== FOOTER ===== */
 footer {
@@ -274,6 +279,7 @@ input:focus {
 .product {
     position: relative;
 }
+
 
 
 
