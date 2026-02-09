@@ -37,4 +37,14 @@ function goToCheckout() {
     }
     window.location.href = "checkout.html";
 }
+function searchProducts() {
+    let input = document.getElementById("search").value.toLowerCase();
+    let products = document.querySelectorAll(".product");
+
+    products.forEach(product => {
+        let name = product.querySelector("h3").innerText.toLowerCase();
+        product.style.display = name.includes(input) ? "block" : "none";
+    });
+}
+
 
