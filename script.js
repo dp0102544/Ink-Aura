@@ -30,3 +30,11 @@ function removeFromCart(index) {
 
 // Load cart on page refresh
 updateCartUI();
+function goToCheckout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+    }
+    window.location.href = "checkout.html";
+}
+
