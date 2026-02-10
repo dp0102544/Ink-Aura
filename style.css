@@ -231,3 +231,54 @@ footer {
         text-align: center;
     }
 }
+.hero-banner {
+    width: 100%;
+    height: 350px;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 40px;
+}
+
+.hero-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.hero-text {
+    position: absolute;
+    top: 40%;
+    left: 10%;
+    color: white;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.7);
+}
+.hero-text h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+}
+.hero-text button {
+    padding: 12px 28px;
+    background: #000;
+    color: #fff;
+    border: none;
+}
+.product-rating {
+    font-size: 14px;
+    color: #444;
+    margin: 8px 0;
+}
+
+.wishlist-btn {
+    font-size: 14px;
+    border: 1px solid #444;
+    background: white;
+    padding: 6px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    margin-top: 6px;
+}
+
+.wishlist-btn:hover {
+    background: #eee;
+}
+
