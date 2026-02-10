@@ -50,20 +50,26 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
     /* ===== FILTER CATEGORY ===== */
-    window.filterCategory = function(category) {
-        document.querySelectorAll(".product").forEach(product => {
-            product.style.display =
-                category === "all" || product.dataset.category === category
-                ? ""
-                : "none";
-        });
+  function filterCategory(category) {
+    const products = document.querySelectorAll(".product");
+    const buttons = document.querySelectorAll(".filters button");
 
-        document.querySelectorAll(".filters button").forEach(btn => {
-            btn.classList.remove("active");
-        });
+    products.forEach(product => {
+        const match =
+            category === "all" ||
+            product.dataset.category === category;
 
-        event.target.classList.add("active");
-    };
+        product.style.display = match ? "block" : "none";
+    });
+
+    buttons.forEach(btn => {
+        btn.classList.remove("active");
+        if (btn.textContent.toLowerCase().includes(category) || category === "all") {
+            btn.classList.add("active");
+        }
+    });
+}
+
 
     /* ===== SEARCH ===== */
     window.searchProducts = function() {
@@ -77,3 +83,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     updateCartUI();
 });
+
