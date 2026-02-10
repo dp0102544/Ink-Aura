@@ -352,6 +352,22 @@ img {
 .product:hover img {
     transform: scale(1.1);
 }
+.quick-view-btn {
+    background: transparent;
+    border: 1px solid purple;
+    color: purple;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 13px;
+    cursor: pointer;
+    margin-bottom: 8px;
+}
+
+.quick-view-btn:hover {
+    background: purple;
+    color: white;
+}
+
 
 
 
