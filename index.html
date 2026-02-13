@@ -161,7 +161,35 @@
     <p>Owner: Dhara Patel</p>
 </footer>
 
+<!-- ===== SCRIPT ===== -->
 <script src="script.js"></script>
+
+<!-- ===== STEP 2: LOGIN URL CONNECTION ===== -->
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(e) {
+    e.preventDefault(); // Prevent page refresh
+
+    const username = document.getElementById("username").value;
+    const password = document.getElementById("password").value;
+
+    // Connect to your login API
+    fetch("YOUR_LOGIN_URL", {  // ← Replace this with your actual login URL
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ username, password })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if(data.success){
+            alert("Login Successful!");
+            window.location.href = "dashboard.html"; // redirect after login
+        } else {
+            alert("Login Failed: " + data.message);
+        }
+    })
+    .catch(error => console.error("Error:", error));
+});
+</script>
+
 </body>
 </html>
-
