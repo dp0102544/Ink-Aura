@@ -1,7 +1,8 @@
 /* ===============================
-   LOAD CART
+   LOAD CART FROM LOCAL STORAGE
 ================================ */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
 
 /* ===============================
    SAVE CART
@@ -10,16 +11,16 @@ function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
 
+
 /* ===============================
    ADD TO CART
 ================================ */
 function addToCart(name, price) {
 
-    // Check if product already exists
-    const existing = cart.find(item => item.name === name);
+    const existingItem = cart.find(item => item.name === name);
 
-    if (existing) {
-        existing.quantity += 1;
+    if (existingItem) {
+        existingItem.quantity += 1;
     } else {
         cart.push({
             name: name,
@@ -30,16 +31,19 @@ function addToCart(name, price) {
 
     saveCart();
     updateCart();
+    openCart(); // open cart automatically
 }
+
 
 /* ===============================
    INCREASE QUANTITY
 ================================ */
 function increaseQty(index) {
-    cart[index].quantity += 1;
+    cart[index].quantity++;
     saveCart();
     updateCart();
 }
+
 
 /* ===============================
    DECREASE QUANTITY
@@ -47,7 +51,7 @@ function increaseQty(index) {
 function decreaseQty(index) {
 
     if (cart[index].quantity > 1) {
-        cart[index].quantity -= 1;
+        cart[index].quantity--;
     } else {
         cart.splice(index, 1);
     }
@@ -56,12 +60,26 @@ function decreaseQty(index) {
     updateCart();
 }
 
+
+/* ===============================
+   REMOVE ITEM COMPLETELY
+================================ */
+function removeItem(index) {
+    cart.splice(index, 1);
+    saveCart();
+    updateCart();
+}
+
+
 /* ===============================
    UPDATE CART UI
 ================================ */
 function updateCart() {
+
     const cartList = document.getElementById("cart-items");
     const cartCount = document.getElementById("cart-count");
+
+    if (!cartList || !cartCount) return;
 
     cartList.innerHTML = "";
 
@@ -81,23 +99,20 @@ function updateCart() {
         totalItems += item.quantity;
 
         const li = document.createElement("li");
-        li.style.display = "flex";
-        li.style.justifyContent = "space-between";
-        li.style.alignItems = "center";
-        li.style.marginBottom = "10px";
+        li.style.marginBottom = "15px";
 
         li.innerHTML = `
-            <div>
-                <strong>${item.name}</strong><br>
-                ₹${item.price} × ${item.quantity} = ₹${itemTotal}
-            </div>
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <strong>${item.name}</strong><br>
+                    ₹${item.price} × ${item.quantity} = ₹${itemTotal}
+                </div>
 
-            <div>
-                <button onclick="decreaseQty(${index})"
-                    style="padding:4px 8px;">−</button>
-
-                <button onclick="increaseQty(${index})"
-                    style="padding:4px 8px;">+</button>
+                <div>
+                    <button onclick="decreaseQty(${index})">−</button>
+                    <button onclick="increaseQty(${index})">+</button>
+                    <button onclick="removeItem(${index})">❌</button>
+                </div>
             </div>
         `;
 
@@ -106,7 +121,7 @@ function updateCart() {
 
     const totalLi = document.createElement("li");
     totalLi.style.fontWeight = "bold";
-    totalLi.style.marginTop = "10px";
+    totalLi.style.marginTop = "15px";
     totalLi.textContent = `Total: ₹${total}`;
 
     cartList.appendChild(totalLi);
@@ -114,10 +129,12 @@ function updateCart() {
     cartCount.textContent = totalItems;
 }
 
+
 /* ===============================
-   FILTER
+   CATEGORY FILTER
 ================================ */
 function filterCategory(category) {
+
     const products = document.querySelectorAll(".product");
 
     products.forEach(product => {
@@ -131,14 +148,17 @@ function filterCategory(category) {
     });
 }
 
+
 /* ===============================
-   SEARCH
+   SEARCH PRODUCTS
 ================================ */
 function searchProducts() {
+
     const value = document.getElementById("search").value.toLowerCase();
     const products = document.querySelectorAll(".product");
 
     products.forEach(product => {
+
         const name = product.querySelector("h3").innerText.toLowerCase();
 
         if (name.includes(value)) {
@@ -149,8 +169,36 @@ function searchProducts() {
     });
 }
 
+
 /* ===============================
-   LOAD ON START
+   WISHLIST TOGGLE
+================================ */
+function toggleWishlist(button) {
+
+    if (button.classList.contains("active")) {
+        button.classList.remove("active");
+        button.innerHTML = "♡ Wishlist";
+    } else {
+        button.classList.add("active");
+        button.innerHTML = "❤️ Added";
+    }
+}
+
+
+/* ===============================
+   CART DRAWER CONTROL
+================================ */
+function openCart() {
+    document.body.classList.add("cart-open");
+}
+
+function closeCart() {
+    document.body.classList.remove("cart-open");
+}
+
+
+/* ===============================
+   LOAD ON PAGE START
 ================================ */
 window.onload = function () {
     updateCart();
