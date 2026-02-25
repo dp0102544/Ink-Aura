@@ -1,4 +1,12 @@
 /* ===============================
+   PARSE INITIALIZATION (ADD HERE)
+================================ */
+
+Parse.initialize("YOUR_APP_ID", "YOUR_JS_KEY");
+Parse.serverURL = "https://parseapi.back4app.com/";
+
+
+/* ===============================
    LOAD CART FROM LOCAL STORAGE
 ================================ */
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -31,7 +39,7 @@ function addToCart(name, price) {
 
     saveCart();
     updateCart();
-    openCart(); // open cart automatically
+    openCart();
 }
 
 
