@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ink & Aura</title>
+
+    <!-- ✅ Parse SDK -->
+    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
 <!-- ===== LOGIN FORM ===== -->
-  <form id="loginForm">
+<form id="loginForm">
     <input type="text" id="username" placeholder="Username" required>
     <input type="password" id="password" placeholder="Password" required>
     <button type="submit">Login</button>
-  </form>
+</form>
+
 <!-- ===== HEADER ===== -->
 <header class="top-bar">
     <div class="logo">🛍️ Ink & Aura</div>
@@ -37,12 +42,10 @@
         <span class="search-icon">🔍</span>
     </div>
 
-    <!-- ✅ CART CLICK FIXED -->
     <div class="cart-info" onclick="openCart()" style="cursor:pointer;">
         🛒 <span id="cart-count">0</span>
     </div>
 </header>
-
 
 <!-- ===== CATEGORIES ===== -->
 <section class="browse-categories">
@@ -65,12 +68,10 @@
 
     <ul id="cart-items"></ul>
 
-    <!-- ✅ TOTAL FIXED -->
     <div class="cart-footer">
         <p id="cart-total"></p>
     </div>
 </div>
-
 
 <button onclick="window.location.href='checkout.html'"
         style="display:block; margin:20px auto;">
@@ -165,33 +166,26 @@
 <!-- ===== SCRIPT ===== -->
 <script src="script.js"></script>
 
-<!-- ===== STEP 2: LOGIN URL CONNECTION ===== -->
+<!-- ===== PARSE INITIALIZATION + LOGIN ===== -->
 <script>
-document.getElementById("loginForm").addEventListener("submit", function(e) {
-    e.preventDefault(); // Prevent page refresh
+    Parse.initialize("YOUR_APP_ID", "YOUR_JS_KEY");
+    Parse.serverURL = "https://parseapi.back4app.com/";
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+    document.getElementById("loginForm").addEventListener("submit", async function(e) {
+        e.preventDefault();
 
-    // Connect to your login API
-    fetch("YOUR_LOGIN_URL", {  // ← Replace this with your actual login URL
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ username, password })
-    })
-    .then(response => response.json())
-    .then(data => {
-        if(data.success){
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+
+        try {
+            await Parse.User.logIn(username, password);
             alert("Login Successful!");
-            window.location.href = "dashboard.html"; // redirect after login
-        } else {
-            alert("Login Failed: " + data.message);
+            window.location.href = "dashboard.html";
+        } catch (error) {
+            alert("Login Failed: " + error.message);
         }
-    })
-    .catch(error => console.error("Error:", error));
-});
+    });
 </script>
 
 </body>
 </html>
-
