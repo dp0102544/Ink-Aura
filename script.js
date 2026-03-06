@@ -3,7 +3,7 @@
 ================================ */
 
 Parse.initialize(
-"27zMStJR7gI1JFF1jmWo155suN1lvSNL0FXC0AT4",
+"27zMStJR7gI1JFF1jmWo155suN1lvSNL0FXCOAT4",
 "vTolzZWr2cyZBktTYGYc1fGeUoVZojBhpwzKHtz7"
 );
 
@@ -351,4 +351,5 @@ console.log("Logged in as:",user.get("username"));
 }
 
 };
+
 
