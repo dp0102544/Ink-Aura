@@ -9,7 +9,6 @@ Parse.initialize(
 
 Parse.serverURL = "https://parseapi.back4app.com/";
 
-
 /* ===============================
    LOAD CART FROM LOCAL STORAGE
 ================================ */
@@ -352,3 +351,4 @@ console.log("Logged in as:",user.get("username"));
 }
 
 };
+
