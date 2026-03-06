@@ -50,13 +50,12 @@ margin-top:10px;
 
 <div class="box">
 
-<h2>Create Account</h2>
+<h2>Signup</h2>
 
 <input type="text" id="signup-username" placeholder="Username">
-
 <input type="password" id="signup-password" placeholder="Password">
 
-<button onclick="signup()">Signup</button>
+<button onclick="signup()">Create Account</button>
 
 <a href="login.html">Already have account? Login</a>
 
@@ -70,6 +69,8 @@ const username = document.getElementById("signup-username").value;
 const password = document.getElementById("signup-password").value;
 
 await signupUser(username,password);
+
+alert("Account Created!");
 
 window.location.href="login.html";
 
