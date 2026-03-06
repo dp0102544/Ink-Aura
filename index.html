@@ -1,177 +1,406 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>Ink & Aura</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Ink & Aura</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Parse SDK -->
-    <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+<script src="https://unpkg.com/parse/dist/parse.min.js"></script>
 
-    <link rel="stylesheet" href="style.css">
+<style>
+
+body{
+font-family:Arial;
+margin:0;
+padding:0;
+background:#f5f5f5;
+}
+
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:15px;
+background:#222;
+color:white;
+}
+
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+padding:20px;
+}
+
+.product{
+background:white;
+padding:15px;
+border-radius:10px;
+text-align:center;
+}
+
+.product img{
+width:100%;
+height:150px;
+object-fit:cover;
+}
+
+button{
+padding:8px 12px;
+margin-top:10px;
+cursor:pointer;
+}
+
+#cart{
+position:fixed;
+right:-350px;
+top:0;
+width:350px;
+height:100%;
+background:white;
+box-shadow:-2px 0 10px rgba(0,0,0,0.3);
+padding:20px;
+transition:0.3s;
+overflow:auto;
+}
+
+body.cart-open #cart{
+right:0;
+}
+
+#authSection{
+padding:20px;
+background:white;
+margin:20px;
+}
+
+</style>
 </head>
 
 <body>
 
-<!-- ================= LOGIN / SIGNUP SECTION ================= -->
+<!-- LOGIN / SIGNUP -->
 
 <div id="authSection">
 
-    <form id="loginForm">
-        <h3>Login</h3>
-        <input type="text" id="username" placeholder="Username" required>
-        <input type="password" id="password" placeholder="Password" required>
-        <button type="submit">Login</button>
-    </form>
+<form id="loginForm">
+<h3>Login</h3>
+<input type="text" id="username" placeholder="Username" required>
+<input type="password" id="password" placeholder="Password" required>
+<button type="submit">Login</button>
+</form>
 
-    <form id="signupForm">
-        <h3>Sign Up</h3>
-        <input type="text" id="newUsername" placeholder="New Username" required>
-        <input type="password" id="newPassword" placeholder="New Password" required>
-        <button type="submit">Sign Up</button>
-    </form>
+<br>
+
+<form id="signupForm">
+<h3>Sign Up</h3>
+<input type="text" id="newUsername" placeholder="New Username" required>
+<input type="password" id="newPassword" placeholder="New Password" required>
+<button type="submit">Sign Up</button>
+</form>
 
 </div>
 
-<!-- ================= HEADER ================= -->
+<!-- HEADER -->
 
 <header class="top-bar">
-    <div class="logo">🛍️ Ink & Aura</div>
 
-    <div id="userInfo" style="display:none;">
-        Welcome, <span id="currentUser"></span>
-        <button onclick="logout()">Logout</button>
-    </div>
+<div class="logo">🛍️ Ink & Aura</div>
 
-    <div class="filters">
-        <button onclick="filterCategory('all')" class="active">All</button>
-        <button onclick="filterCategory('brush')">Brushes</button>
-        <button onclick="filterCategory('color')">Colors</button>
-        <button onclick="filterCategory('book')">Books</button>
-        <button onclick="filterCategory('tool')">Tools</button>
-    </div>
+<div id="userInfo" style="display:none;">
+Welcome, <span id="currentUser"></span>
+<button onclick="logout()">Logout</button>
+</div>
 
-    <div class="search-container">
-        <input type="text" id="search" placeholder="Search products..." onkeyup="searchProducts()">
-        <span class="search-icon">🔍</span>
-    </div>
+<div>
+<input type="text" id="search" placeholder="Search" onkeyup="searchProducts()">
+</div>
 
-    <div class="cart-info" onclick="openCart()" style="cursor:pointer;">
-        🛒 <span id="cart-count">0</span>
-    </div>
+<div onclick="openCart()" style="cursor:pointer;">
+🛒 <span id="cart-count">0</span>
+</div>
+
 </header>
 
 <h2 style="text-align:center;">Products</h2>
 
-<!-- ================= PRODUCTS ================= -->
+<!-- PRODUCTS -->
 
 <div class="products">
 
-    <div class="product" data-category="book">
-        <h3>Sketch Book</h3>
-        <img src="https://i.pinimg.com/736x/7a/44/55/7a4455115fbf5d63d10c0dc021aee328.jpg">
-        <p>₹100</p>
-        <button onclick="addToCart('Sketch Book',100)">Add to Cart</button>
-    </div>
+<div class="product" data-category="book">
+<h3>Sketch Book</h3>
+<img src="https://i.pinimg.com/736x/7a/44/55/7a4455115fbf5d63d10c0dc021aee328.jpg">
+<p>₹100</p>
+<button onclick="addToCart('Sketch Book',100)">Add to Cart</button>
+</div>
 
-    <div class="product" data-category="color">
-        <h3>Doms Colour Pencil</h3>
-        <img src="https://tse1.mm.bing.net/th/id/OIP.NzXoLV73IsYPRw1q0JqMnAHaHa">
-        <p>₹90</p>
-        <button onclick="addToCart('Doms Colour Pencil',90)">Add to Cart</button>
-    </div>
+<div class="product" data-category="color">
+<h3>Doms Colour Pencil</h3>
+<img src="https://tse1.mm.bing.net/th/id/OIP.NzXoLV73IsYPRw1q0JqMnAHaHa">
+<p>₹90</p>
+<button onclick="addToCart('Doms Colour Pencil',90)">Add to Cart</button>
+</div>
 
-    <div class="product" data-category="color">
-        <h3>Crayon</h3>
-        <img src="https://domsindia.com/wp-content/uploads/2022/08/DOMS-Long-Wax-Crayons-12-Shades.jpg">
-        <p>₹50</p>
-        <button onclick="addToCart('Crayon',50)">Add to Cart</button>
-    </div>
+<div class="product" data-category="color">
+<h3>Crayon</h3>
+<img src="https://domsindia.com/wp-content/uploads/2022/08/DOMS-Long-Wax-Crayons-12-Shades.jpg">
+<p>₹50</p>
+<button onclick="addToCart('Crayon',50)">Add to Cart</button>
+</div>
 
 </div>
 
-<footer>
-    <p>© 2025 Ink & Aura</p>
-    <p>Owner: Dhara Patel</p>
+<!-- CART -->
+
+<div id="cart">
+
+<h2>Shopping Cart</h2>
+
+<ul id="cart-items"></ul>
+
+<button onclick="closeCart()">Close</button>
+
+</div>
+
+<footer style="text-align:center;padding:20px;">
+<p>© 2025 Ink & Aura</p>
+<p>Owner: Dhara Patel</p>
 </footer>
 
-<script src="script.js"></script>
-
 <script>
-/* ===============================
-   PARSE INITIALIZATION
-================================ */
-Parse.initialize("YOUR_REAL_APP_ID", "YOUR_REAL_JS_KEY");
-Parse.serverURL = "https://parseapi.back4app.com/";
+
+/* PARSE INIT */
+
+Parse.initialize("YOUR_APP_ID","YOUR_JS_KEY");
+Parse.serverURL="https://parseapi.back4app.com/";
 
 
-/* ===============================
-   AUTO LOGIN CHECK
-================================ */
-window.onload = function () {
+/* AUTO LOGIN */
 
-    const currentUser = Parse.User.current();
+window.onload=function(){
 
-    if (currentUser) {
-        document.getElementById("authSection").style.display = "none";
-        document.getElementById("userInfo").style.display = "block";
-        document.getElementById("currentUser").innerText = currentUser.get("username");
-    }
-};
+updateCart();
 
+const currentUser=Parse.User.current();
 
-/* ===============================
-   LOGIN
-================================ */
-document.getElementById("loginForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
+if(currentUser){
 
-    const username = document.getElementById("username").value;
-    const password = document.getElementById("password").value;
+document.getElementById("authSection").style.display="none";
+document.getElementById("userInfo").style.display="block";
+document.getElementById("currentUser").innerText=currentUser.get("username");
 
-    try {
-        const user = await Parse.User.logIn(username, password);
-
-        alert("Login Successful!");
-        document.getElementById("authSection").style.display = "none";
-        document.getElementById("userInfo").style.display = "block";
-        document.getElementById("currentUser").innerText = user.get("username");
-
-    } catch (error) {
-        alert("Login Failed: " + error.message);
-    }
-});
-
-
-/* ===============================
-   SIGNUP
-================================ */
-document.getElementById("signupForm").addEventListener("submit", async function(e) {
-    e.preventDefault();
-
-    const username = document.getElementById("newUsername").value;
-    const password = document.getElementById("newPassword").value;
-
-    const user = new Parse.User();
-    user.set("username", username);
-    user.set("password", password);
-
-    try {
-        await user.signUp();
-        alert("Signup Successful! Please login.");
-    } catch (error) {
-        alert("Signup Failed: " + error.message);
-    }
-});
-
-
-/* ===============================
-   LOGOUT
-================================ */
-async function logout() {
-    await Parse.User.logOut();
-    location.reload();
 }
+
+}
+
+
+/* LOGIN */
+
+document.getElementById("loginForm").addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+const username=document.getElementById("username").value;
+const password=document.getElementById("password").value;
+
+try{
+
+const user=await Parse.User.logIn(username,password);
+
+alert("Login Successful");
+
+document.getElementById("authSection").style.display="none";
+document.getElementById("userInfo").style.display="block";
+document.getElementById("currentUser").innerText=user.get("username");
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+});
+
+
+/* SIGNUP */
+
+document.getElementById("signupForm").addEventListener("submit",async function(e){
+
+e.preventDefault();
+
+const username=document.getElementById("newUsername").value;
+const password=document.getElementById("newPassword").value;
+
+const user=new Parse.User();
+
+user.set("username",username);
+user.set("password",password);
+
+try{
+
+await user.signUp();
+alert("Signup Successful");
+
+}catch(error){
+
+alert(error.message);
+
+}
+
+});
+
+
+async function logout(){
+
+await Parse.User.logOut();
+location.reload();
+
+}
+
+
+/* CART SYSTEM */
+
+let cart=JSON.parse(localStorage.getItem("cart"))||[];
+
+function saveCart(){
+
+localStorage.setItem("cart",JSON.stringify(cart));
+
+}
+
+function addToCart(name,price){
+
+const existing=cart.find(item=>item.name===name);
+
+if(existing){
+
+existing.quantity++;
+
+}else{
+
+cart.push({name,price,quantity:1});
+
+}
+
+saveCart();
+updateCart();
+openCart();
+
+}
+
+
+function increaseQty(index){
+
+cart[index].quantity++;
+saveCart();
+updateCart();
+
+}
+
+
+function decreaseQty(index){
+
+if(cart[index].quantity>1){
+
+cart[index].quantity--;
+
+}else{
+
+cart.splice(index,1);
+
+}
+
+saveCart();
+updateCart();
+
+}
+
+
+function removeItem(index){
+
+cart.splice(index,1);
+saveCart();
+updateCart();
+
+}
+
+
+function updateCart(){
+
+const cartList=document.getElementById("cart-items");
+const cartCount=document.getElementById("cart-count");
+
+cartList.innerHTML="";
+
+let totalItems=0;
+let total=0;
+
+cart.forEach((item,index)=>{
+
+const li=document.createElement("li");
+
+const itemTotal=item.price*item.quantity;
+
+total+=itemTotal;
+totalItems+=item.quantity;
+
+li.innerHTML=`
+${item.name} ₹${item.price} x ${item.quantity}
+
+<button onclick="decreaseQty(${index})">-</button>
+<button onclick="increaseQty(${index})">+</button>
+<button onclick="removeItem(${index})">x</button>
+
+`;
+
+cartList.appendChild(li);
+
+});
+
+const totalLi=document.createElement("li");
+totalLi.innerHTML="<b>Total: ₹"+total+"</b>";
+
+cartList.appendChild(totalLi);
+
+cartCount.textContent=totalItems;
+
+}
+
+
+/* CART OPEN CLOSE */
+
+function openCart(){
+
+document.body.classList.add("cart-open");
+
+}
+
+function closeCart(){
+
+document.body.classList.remove("cart-open");
+
+}
+
+
+/* SEARCH */
+
+function searchProducts(){
+
+const value=document.getElementById("search").value.toLowerCase();
+const products=document.querySelectorAll(".product");
+
+products.forEach(product=>{
+
+const name=product.querySelector("h3").innerText.toLowerCase();
+
+product.style.display=name.includes(value)?"block":"none";
+
+});
+
+}
+
 </script>
 
 </body>
