@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Login</title>
+
+<script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+<script src="script.js"></script>
+
+<style>
+body{
+font-family: Arial;
+display:flex;
+justify-content:center;
+align-items:center;
+height:100vh;
+background:#f5f5f5;
+}
+
+.box{
+background:white;
+padding:30px;
+border-radius:10px;
+box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+input{
+display:block;
+margin:10px 0;
+padding:10px;
+width:200px;
+}
+
+button{
+padding:10px 20px;
+background:black;
+color:white;
+border:none;
+cursor:pointer;
+}
+
+a{
+display:block;
+margin-top:10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="box">
+
+<h2>Login</h2>
+
+<input type="text" id="login-username" placeholder="Username">
+
+<input type="password" id="login-password" placeholder="Password">
+
+<button onclick="login()">Login</button>
+
+<a href="signup.html">Create new account</a>
+
+</div>
+
+<script>
+
+async function login(){
+
+const username = document.getElementById("login-username").value;
+const password = document.getElementById("login-password").value;
+
+await loginUser(username,password);
+
+window.location.href="index.html";
+
+}
+
+</script>
+
+</body>
+</html>
