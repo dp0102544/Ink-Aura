@@ -1,20 +1,26 @@
 /* ===============================
-   PARSE INITIALIZATION (ADD HERE)
+   PARSE INITIALIZATION
 ================================ */
 
-Parse.initialize("27zMStJR7gI1JFF1jmWo155suN1lvSNL0FXC0AT4", "vTolzZWr2cyZBktTYGYc1fGeUoVZojBhpwzKHtz7");
+Parse.initialize(
+"27zMStJR7gI1JFF1jmWo155suN1lvSNL0FXC0AT4",
+"vTolzZWr2cyZBktTYGYc1fGeUoVZojBhpwzKHtz7"
+);
+
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 
 /* ===============================
    LOAD CART FROM LOCAL STORAGE
 ================================ */
+
 let cart = JSON.parse(localStorage.getItem("cart")) || [];
 
 
 /* ===============================
    SAVE CART
 ================================ */
+
 function saveCart() {
     localStorage.setItem("cart", JSON.stringify(cart));
 }
@@ -23,6 +29,7 @@ function saveCart() {
 /* ===============================
    ADD TO CART
 ================================ */
+
 function addToCart(name, price) {
 
     const existingItem = cart.find(item => item.name === name);
@@ -46,6 +53,7 @@ function addToCart(name, price) {
 /* ===============================
    INCREASE QUANTITY
 ================================ */
+
 function increaseQty(index) {
     cart[index].quantity++;
     saveCart();
@@ -56,6 +64,7 @@ function increaseQty(index) {
 /* ===============================
    DECREASE QUANTITY
 ================================ */
+
 function decreaseQty(index) {
 
     if (cart[index].quantity > 1) {
@@ -72,6 +81,7 @@ function decreaseQty(index) {
 /* ===============================
    REMOVE ITEM COMPLETELY
 ================================ */
+
 function removeItem(index) {
     cart.splice(index, 1);
     saveCart();
@@ -82,6 +92,7 @@ function removeItem(index) {
 /* ===============================
    UPDATE CART UI
 ================================ */
+
 function updateCart() {
 
     const cartList = document.getElementById("cart-items");
@@ -141,11 +152,13 @@ function updateCart() {
 /* ===============================
    CATEGORY FILTER
 ================================ */
+
 function filterCategory(category) {
 
     const products = document.querySelectorAll(".product");
 
     products.forEach(product => {
+
         const productCategory = product.dataset.category;
 
         if (category === "all" || productCategory === category) {
@@ -153,13 +166,16 @@ function filterCategory(category) {
         } else {
             product.style.display = "none";
         }
+
     });
+
 }
 
 
 /* ===============================
    SEARCH PRODUCTS
 ================================ */
+
 function searchProducts() {
 
     const value = document.getElementById("search").value.toLowerCase();
@@ -174,28 +190,37 @@ function searchProducts() {
         } else {
             product.style.display = "none";
         }
+
     });
+
 }
 
 
 /* ===============================
    WISHLIST TOGGLE
 ================================ */
+
 function toggleWishlist(button) {
 
     if (button.classList.contains("active")) {
+
         button.classList.remove("active");
         button.innerHTML = "♡ Wishlist";
+
     } else {
+
         button.classList.add("active");
         button.innerHTML = "❤️ Added";
+
     }
+
 }
 
 
 /* ===============================
    CART DRAWER CONTROL
 ================================ */
+
 function openCart() {
     document.body.classList.add("cart-open");
 }
@@ -206,11 +231,9 @@ function closeCart() {
 
 
 /* ===============================
-   LOAD ON PAGE START
+   CHECKOUT SYSTEM (BACKEND SAVE)
 ================================ */
-window.onload = function () {
-    updateCart();
-};
+
 async function checkout(){
 
 const user = Parse.User.current();
@@ -219,6 +242,8 @@ if(!user){
 alert("Please login first");
 return;
 }
+
+try{
 
 for(let item of cart){
 
@@ -241,5 +266,89 @@ cart=[];
 saveCart();
 updateCart();
 
+}catch(error){
+
+alert("Order Failed: "+error.message);
+
 }
 
+}
+
+
+/* ===============================
+   LOGIN FUNCTION
+================================ */
+
+async function loginUser(username,password){
+
+try{
+
+const user = await Parse.User.logIn(username,password);
+
+alert("Welcome "+user.get("username"));
+
+}catch(error){
+
+alert("Login Failed: "+error.message);
+
+}
+
+}
+
+
+/* ===============================
+   SIGNUP FUNCTION
+================================ */
+
+async function signupUser(username,password){
+
+const user = new Parse.User();
+
+user.set("username",username);
+user.set("password",password);
+
+try{
+
+await user.signUp();
+
+alert("Account created successfully");
+
+}catch(error){
+
+alert("Signup Error: "+error.message);
+
+}
+
+}
+
+
+/* ===============================
+   LOGOUT
+================================ */
+
+async function logout(){
+
+await Parse.User.logOut();
+
+alert("Logged Out");
+
+location.reload();
+
+}
+
+
+/* ===============================
+   LOAD ON PAGE START
+================================ */
+
+window.onload = function () {
+
+updateCart();
+
+const user = Parse.User.current();
+
+if(user){
+console.log("Logged in as:",user.get("username"));
+}
+
+};
