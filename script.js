@@ -2,7 +2,7 @@
    PARSE INITIALIZATION (ADD HERE)
 ================================ */
 
-Parse.initialize("YOUR_APP_ID", "YOUR_JS_KEY");
+Parse.initialize("27zMStJR7gI1JFF1jmWo155suN1lvSNL0FXC0AT4", "vTolzZWr2cyZBktTYGYc1fGeUoVZojBhpwzKHtz7");
 Parse.serverURL = "https://parseapi.back4app.com/";
 
 
@@ -211,3 +211,4 @@ function closeCart() {
 window.onload = function () {
     updateCart();
 };
+
