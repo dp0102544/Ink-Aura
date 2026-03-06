@@ -211,4 +211,35 @@ function closeCart() {
 window.onload = function () {
     updateCart();
 };
+async function checkout(){
+
+const user = Parse.User.current();
+
+if(!user){
+alert("Please login first");
+return;
+}
+
+for(let item of cart){
+
+const Order = Parse.Object.extend("Orders");
+const order = new Order();
+
+order.set("user",user);
+order.set("productName",item.name);
+order.set("price",item.price);
+order.set("quantity",item.quantity);
+order.set("total",item.price * item.quantity);
+
+await order.save();
+
+}
+
+alert("Order Placed Successfully!");
+
+cart=[];
+saveCart();
+updateCart();
+
+}
 
