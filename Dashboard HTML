@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ink & Aura Dashboard</title>
+
+<link rel="stylesheet" href="dashboard.css">
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+</head>
+
+<body>
+
+<div class="dashboard">
+
+<h1>Dashboard</h1>
+<p>Welcome back! Here is your store overview.</p>
+
+<div class="stats">
+
+<div class="card">
+<h3>Total Orders</h3>
+<h2>12</h2>
+<p>All time</p>
+</div>
+
+<div class="card">
+<h3>Total Revenue</h3>
+<h2>₹8,540</h2>
+<p>Earned</p>
+</div>
+
+<div class="card">
+<h3>Total Products</h3>
+<h2>7</h2>
+<p>Available</p>
+</div>
+
+<div class="card">
+<h3>Today's Orders</h3>
+<h2>3</h2>
+<p>New</p>
+</div>
+
+</div>
+
+<div class="charts">
+
+<div class="chart-card">
+<h3>Monthly Sales</h3>
+<canvas id="salesChart"></canvas>
+</div>
+
+<div class="chart-card">
+<h3>Orders Growth</h3>
+<canvas id="orderChart"></canvas>
+</div>
+
+</div>
+
+</div>
+
+<script src="dashboard.js"></script>
+
+</body>
+</html>
