@@ -12,13 +12,15 @@
 </head>
 
 <body>
+
 <nav>
 <a href="index.html">Home</a>
-<a href="login.html">Login</a>
+<a href="#" onclick="openLogin()">Login</a>
 <a href="signup.html">Signup</a>
 </nav>
+
 <!-- LOGIN LINK -->
-<a href="login.html" style="position:absolute; right:20px; top:20px;">Login</a>
+<a href="#" onclick="openLogin()" style="position:absolute; right:20px; top:20px;">Login</a>
 
 <!-- HEADER -->
 <header class="top-bar">
@@ -164,6 +166,30 @@ Proceed to Checkout
 <div>⭐ 4.8/5 Customer Rating</div>
 </section>
 
+<!-- LOGIN POPUP -->
+<div id="loginModal" class="login-modal">
+
+<div class="login-box">
+
+<span class="close-login" onclick="closeLogin()">✖</span>
+
+<h2>Welcome Back</h2>
+<p>Login to Ink & Aura</p>
+
+<input type="text" id="loginUsername" placeholder="Username">
+<input type="password" id="loginPassword" placeholder="Password">
+
+<button onclick="loginUser()">Login</button>
+
+<p style="margin-top:10px;">
+Don't have an account?
+<a href="signup.html">Signup</a>
+</p>
+
+</div>
+
+</div>
+
 <!-- FOOTER -->
 <footer>
 <p>© 2025 Ink & Aura</p>
@@ -175,7 +201,3 @@ Proceed to Checkout
 
 </body>
 </html>
-
-
-
-
