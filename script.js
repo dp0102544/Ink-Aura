@@ -4,6 +4,7 @@
 Parse.initialize("YOUR_APP_ID", "YOUR_JS_KEY");
 Parse.serverURL = "https://parseapi.back4app.com/";
 
+
 // -----------------------------
 // SIGNUP FUNCTION
 // -----------------------------
@@ -29,17 +30,22 @@ alert("Signup Error: " + error.message);
 
 }
 
+
 // -----------------------------
-// LOGIN FUNCTION
+// LOGIN FUNCTION (POPUP LOGIN)
 // -----------------------------
-async function loginUser(username, password) {
+async function loginUser() {
+
+const username = document.getElementById("loginUsername").value;
+const password = document.getElementById("loginPassword").value;
 
 try {
 
 await Parse.User.logIn(username, password);
 
 alert("Login Successful");
-window.location.href = "index.html";
+
+closeLogin();
 
 } catch (error) {
 
@@ -48,6 +54,23 @@ alert("Login Error: " + error.message);
 }
 
 }
+
+
+// -----------------------------
+// LOGIN POPUP OPEN / CLOSE
+// -----------------------------
+function openLogin() {
+
+document.getElementById("loginModal").style.display = "flex";
+
+}
+
+function closeLogin() {
+
+document.getElementById("loginModal").style.display = "none";
+
+}
+
 
 // -----------------------------
 // CART SYSTEM
@@ -58,6 +81,7 @@ let total = 0;
 function addToCart(name, price) {
 
 cart.push({ name, price });
+
 total += price;
 
 document.getElementById("cart-count").innerText = cart.length;
@@ -73,22 +97,22 @@ document.getElementById("cart-total").innerText = "Total: ₹" + total;
 
 }
 
+
 // -----------------------------
 // CART OPEN / CLOSE
 // -----------------------------
 function openCart() {
 
-document.querySelector(".cart-drawer").style.right = "0";
-document.querySelector(".cart-overlay").style.display = "block";
+document.body.classList.add("cart-open");
 
 }
 
 function closeCart() {
 
-document.querySelector(".cart-drawer").style.right = "-400px";
-document.querySelector(".cart-overlay").style.display = "none";
+document.body.classList.remove("cart-open");
 
 }
+
 
 // -----------------------------
 // CATEGORY FILTER
@@ -112,6 +136,7 @@ product.style.display = "none";
 });
 
 }
+
 
 // -----------------------------
 // PRODUCT SEARCH
@@ -140,6 +165,7 @@ product.style.display = "none";
 
 }
 
+
 // -----------------------------
 // WISHLIST BUTTON
 // -----------------------------
@@ -157,6 +183,7 @@ button.innerText = "♡ Wishlist";
 
 }
 
+
 // -----------------------------
 // CHECKOUT
 // -----------------------------
@@ -165,7 +192,6 @@ function checkout() {
 if (cart.length === 0) {
 
 alert("Cart is empty!");
-
 return;
 
 }
