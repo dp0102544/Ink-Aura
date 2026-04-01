@@ -9,12 +9,13 @@
 
 <style>
 
-/* 🌸 LAVENDER THEME */
+/* 🌸 PREMIUM LAVENDER THEME */
 :root{
   --primary:#9f7aea;
   --secondary:#6c63ff;
   --light:#f5f3ff;
   --card:#ffffff;
+  --text:#2d2d2d;
 }
 
 /* BODY */
@@ -22,6 +23,7 @@ body{
   margin:0;
   font-family: 'Segoe UI', sans-serif;
   background:var(--light);
+  color:var(--text);
 }
 
 /* NAVBAR */
@@ -29,9 +31,9 @@ body{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  padding:15px;
-  background:white;
-  box-shadow:0 4px 10px rgba(0,0,0,0.1);
+  padding:15px 25px;
+  background:var(--card);
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
 .logo{
@@ -45,15 +47,20 @@ body{
   padding:10px;
   border-radius:8px;
   border:1px solid #ddd;
+  outline:none;
+}
+
+.search-bar:focus{
+  border-color:var(--primary);
 }
 
 /* CATEGORY */
 .category-scroll{
   display:flex;
   gap:10px;
-  padding:10px;
+  padding:12px;
   overflow-x:auto;
-  background:white;
+  background:var(--card);
 }
 
 .category-btn{
@@ -61,6 +68,7 @@ body{
   padding:8px 14px;
   border-radius:20px;
   cursor:pointer;
+  transition:0.3s;
 }
 
 .category-btn:hover{
@@ -73,7 +81,8 @@ body{
   background:linear-gradient(135deg,#9f7aea,#6c63ff);
   color:white;
   text-align:center;
-  padding:30px;
+  padding:35px;
+  border-radius:0 0 20px 20px;
 }
 
 /* PRODUCTS */
@@ -86,48 +95,57 @@ body{
 
 /* PRODUCT CARD */
 .product{
-  background:white;
+  background:var(--card);
   border-radius:15px;
   padding:15px;
   text-align:center;
-  box-shadow:0 5px 15px rgba(0,0,0,0.1);
+  box-shadow:0 5px 20px rgba(0,0,0,0.08);
   transition:0.3s;
 }
 
 .product:hover{
-  transform:translateY(-5px);
+  transform:translateY(-6px);
 }
 
 .product img{
   width:100%;
-  height:150px;
+  height:160px;
   object-fit:cover;
   border-radius:10px;
 }
 
 .price{
   font-weight:bold;
+  margin-top:5px;
 }
 
 .old-price{
   text-decoration:line-through;
   color:gray;
   font-size:12px;
+  margin-left:5px;
 }
 
 .discount{
   color:green;
   font-size:12px;
+  margin-left:5px;
 }
 
+/* BUTTON */
 .product button{
   background:var(--primary);
   color:white;
   border:none;
   padding:10px;
-  margin-top:5px;
-  border-radius:6px;
+  margin-top:8px;
+  border-radius:8px;
   cursor:pointer;
+  transition:0.3s;
+}
+
+.product button:hover{
+  background:var(--secondary);
 }
 
 /* CART */
@@ -149,7 +167,7 @@ body{
   top:0;
   width:350px;
   height:100%;
-  background:white;
+  background:var(--card);
   padding:20px;
   transition:0.3s;
 }
@@ -158,11 +176,22 @@ body{
   right:0;
 }
 
+/* CART BUTTON */
+.cart-drawer button{
+  width:100%;
+  padding:12px;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:8px;
+  cursor:pointer;
+}
+
 /* FOOTER */
 footer{
   text-align:center;
   padding:20px;
-  background:#222;
+  background:#1f1f1f;
   color:white;
 }
 
@@ -178,7 +207,9 @@ footer{
 <input type="text" id="search" placeholder="Search products..." class="search-bar" onkeyup="searchProducts()">
 
 <div>
-<span onclick="openCart()">🛒 <span id="cart-count">0</span></span>
+<span onclick="openCart()" style="cursor:pointer;">
+🛒 <span id="cart-count">0</span>
+</span>
 </div>
 </header>
 
@@ -206,7 +237,7 @@ footer{
 <div class="cart-overlay" onclick="closeCart()"></div>
 
 <div class="cart-drawer">
-<h3>Your Cart</h3>
+<h3>Your Cart 🛒</h3>
 <ul id="cart-items"></ul>
 <p id="cart-total"></p>
 <button onclick="checkout()">Place Order</button>
