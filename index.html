@@ -7,18 +7,11 @@
 
 <style>
 
-/* 🌸 THEME */
-:root{
-  --primary:#9f7aea;
-  --light:#f8f7ff;
-  --card:#ffffff;
-}
-
 /* BODY */
 body{
   margin:0;
-  font-family: 'Segoe UI', sans-serif;
-  background:var(--light);
+  font-family: Arial;
+  background:#f5f5f5;
 }
 
 /* NAVBAR */
@@ -28,39 +21,39 @@ body{
   align-items:center;
   padding:12px 20px;
   background:white;
-  box-shadow:0 2px 8px rgba(0,0,0,0.1);
+  box-shadow:0 2px 5px rgba(0,0,0,0.1);
 }
 
 .logo{
   font-size:20px;
   font-weight:bold;
-  color:var(--primary);
+  color:#9f7aea;
 }
 
 .search-bar{
   width:40%;
-  padding:10px;
+  padding:8px;
   border-radius:20px;
-  border:1px solid #ddd;
+  border:1px solid #ccc;
 }
 
 /* CATEGORY */
 .category-scroll{
   display:flex;
   gap:10px;
-  padding:10px 20px;
+  padding:10px;
   background:white;
 }
 
 .category-btn{
-  padding:8px 15px;
-  border-radius:20px;
   background:#eee;
+  padding:8px 12px;
+  border-radius:20px;
   cursor:pointer;
 }
 
 .category-btn:hover{
-  background:var(--primary);
+  background:#9f7aea;
   color:white;
 }
 
@@ -68,40 +61,35 @@ body{
 .banner{
   background:linear-gradient(90deg,#9f7aea,#6c63ff);
   color:white;
-  padding:30px;
   text-align:center;
+  padding:25px;
 }
 
 /* PRODUCTS */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(200px,1fr));
-  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+  gap:15px;
   padding:20px;
 }
 
-/* CARD */
 .product{
   background:white;
-  border-radius:12px;
-  padding:12px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.08);
-  transition:0.2s;
+  border-radius:10px;
+  padding:10px;
+  text-align:center;
+  position:relative;
+  transition:0.3s;
 }
 
 .product:hover{
-  transform:translateY(-5px);
+  transform:scale(1.03);
 }
 
 .product img{
   width:100%;
   height:150px;
   object-fit:cover;
-  border-radius:8px;
-}
-
-.product h4{
-  margin:10px 0 5px;
 }
 
 /* PRICE */
@@ -122,43 +110,28 @@ body{
 
 /* BUTTON */
 .product button{
-  width:100%;
-  padding:8px;
-  margin-top:6px;
-  border:none;
-  border-radius:6px;
-  background:var(--primary);
+  background:#9f7aea;
   color:white;
+  border:none;
+  padding:8px;
+  margin-top:5px;
+  border-radius:5px;
   cursor:pointer;
+  width:100%;
 }
 
 /* BADGE */
 .badge{
   position:absolute;
+  top:10px;
+  left:10px;
   background:red;
   color:white;
   padding:3px 6px;
   font-size:12px;
-  border-radius:5px;
 }
 
 /* CART */
-.cart-drawer{
-  position:fixed;
-  right:-350px;
-  top:0;
-  width:300px;
-  height:100%;
-  background:white;
-  padding:20px;
-  transition:0.3s;
-  box-shadow:-5px 0 10px rgba(0,0,0,0.2);
-}
-
-.cart-drawer.active{
-  right:0;
-}
-
 .cart-overlay{
   position:fixed;
   width:100%;
@@ -171,12 +144,37 @@ body{
   display:block;
 }
 
+.cart-drawer{
+  position:fixed;
+  right:-350px;
+  top:0;
+  width:320px;
+  height:100%;
+  background:white;
+  padding:20px;
+  transition:0.3s;
+}
+
+.cart-drawer.active{
+  right:0;
+}
+
+/* TRUST SECTION (LIKE MEESHO) */
+.trust{
+  display:flex;
+  justify-content:space-around;
+  background:white;
+  padding:20px;
+  margin-top:20px;
+  border-top:1px solid #ddd;
+}
+
 /* FOOTER */
 footer{
-  text-align:center;
-  padding:20px;
   background:#222;
   color:white;
+  padding:20px;
+  text-align:center;
 }
 
 </style>
@@ -184,7 +182,6 @@ footer{
 
 <body>
 
-<!-- NAVBAR -->
 <header class="navbar">
 <div class="logo">🛍️ Ink & Aura</div>
 
@@ -193,7 +190,6 @@ footer{
 <div onclick="openCart()">🛒 <span id="cart-count">0</span></div>
 </header>
 
-<!-- CATEGORY -->
 <div class="category-scroll">
 <div class="category-btn" onclick="filterCategory('all')">All</div>
 <div class="category-btn" onclick="filterCategory('brush')">Brushes</div>
@@ -202,29 +198,36 @@ footer{
 <div class="category-btn" onclick="filterCategory('tool')">Tools</div>
 </div>
 
-<!-- BANNER -->
 <section class="banner">
-<h2>🔥 Premium Art Store</h2>
-<p>Elegant • Creative • Affordable</p>
+<h2>🔥 Big Sale on Art Supplies</h2>
+<p>Up to 50% OFF</p>
 </section>
 
 <h2 style="text-align:center;">Trending Products</h2>
 
-<!-- PRODUCTS -->
 <div class="products" id="product-list"></div>
 
 <!-- CART -->
 <div class="cart-overlay" onclick="closeCart()"></div>
 
 <div class="cart-drawer">
-<h3>Your Cart</h3>
+<h3>Your Cart 🛒</h3>
 <ul id="cart-items"></ul>
 <p id="cart-total">Total: ₹0</p>
 <button onclick="checkout()">Place Order</button>
 </div>
 
+<!-- TRUST SECTION -->
+<section class="trust">
+<div>🔒 Secure Payment</div>
+<div>🚚 Free Delivery</div>
+<div>↩️ 7 Days Return</div>
+<div>⭐ Best Quality</div>
+</section>
+
 <footer>
 <p>© 2025 Ink & Aura</p>
+<p>Owner: Dhara Patel</p>
 </footer>
 
 <script src="script.js"></script>
