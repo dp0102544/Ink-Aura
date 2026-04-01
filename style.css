@@ -520,3 +520,39 @@ border-radius:5px;
 cursor:pointer;
 margin-top:10px;
 }
+/* PRICE STYLE */
+.price{
+font-weight:bold;
+}
+
+.old-price{
+text-decoration:line-through;
+color:gray;
+font-size:12px;
+margin-left:5px;
+}
+
+.discount{
+color:green;
+font-size:12px;
+margin-left:5px;
+}
+
+/* RATING */
+.rating{
+color:#ffa500;
+margin:5px 0;
+}
+
+/* WISHLIST */
+.wishlist-btn{
+background:white;
+border:1px solid #ddd;
+color:#ff4081;
+margin-top:5px;
+}
+
+.wishlist-btn.active{
+background:#ff4081;
+color:white;
+}
