@@ -142,6 +142,8 @@ list.forEach(p => {
 
     </div>
     `;
+  });
+}
 container.innerHTML += `
 <div class="product" data-category="${p.category}">
 ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
