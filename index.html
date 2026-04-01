@@ -185,7 +185,28 @@ footer{
 <div>↩️ Easy Returns</div>
 <div>⭐ 4.8/5 Rating</div>
 </section>
+<!-- CART OVERLAY -->
+<div class="cart-overlay" onclick="closeCart()"></div>
 
+<!-- CART DRAWER -->
+<div class="cart-drawer">
+
+<div class="cart-header">
+<h3>Your Cart 🛒</h3>
+<button onclick="closeCart()">✖</button>
+</div>
+
+<ul id="cart-items"></ul>
+
+<div class="cart-footer">
+<p id="cart-total">Total: ₹0</p>
+</div>
+
+<button onclick="checkout()" class="checkout-btn">
+Place Order
+</button>
+
+</div>
 <!-- FOOTER -->
 <footer>
 <p>© 2025 Ink & Aura</p>
