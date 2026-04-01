@@ -19,7 +19,7 @@ rating: "★★★★☆"
 name: "Crayon",
 price: 50,
 category: "color",
-image: "https://domsindia.com/wp-content/uploads/2022/08/DOMS-Long-Wax-Crayons-12-Shades.jpg",
+image: "https://m.media-amazon.com/images/I/71s7H7qzL2L._SL1500_.jpg",
 rating: "★★★★☆"
 },
 {
@@ -53,7 +53,9 @@ rating: "★★★★☆",
 badge: "Popular"
 }
 ];
-// 🛒 CART ARRAY
+
+
+// 🛒 CART SYSTEM
 let cart = [];
 
 // ADD TO CART
@@ -62,7 +64,7 @@ cart.push({name, price});
 updateCart();
 }
 
-// UPDATE CART UI
+// UPDATE CART
 function updateCart(){
 const list = document.getElementById("cart-items");
 const total = document.getElementById("cart-total");
@@ -113,44 +115,46 @@ updateCart();
 closeCart();
 }
 
-// 📦 LOAD PRODUCTS
+
+// 📦 DISPLAY PRODUCTS (FIXED)
 function displayProducts(list){
 const container = document.getElementById("product-list");
 container.innerHTML = "";
 
 list.forEach(p => {
-  container.innerHTML += `
-    <div class="product" data-category="${p.category}">
+container.innerHTML += `
+<div class="product" data-category="${p.category}">
 
-    ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
+${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
 
-    <img src="${p.image}">
+<img src="${p.image}">
 
-    <h4>${p.name}</h4>
+<h4>${p.name}</h4>
 
-    <p class="price">
-    ₹${p.price}
-    <span class="old-price">₹${p.price + 100}</span>
-    <span class="discount">50% OFF</span>
-    </p>
+<p class="price">
+₹${p.price}
+<span class="old-price">₹${p.price + 100}</span>
+<span class="discount">50% OFF</span>
+</p>
 
-    <div class="rating">${p.rating}</div>
+<div class="rating">${p.rating}</div>
 
-    <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+<button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
 
-    <button class="wishlist-btn" onclick="toggleWishlist(this)">♡</button>
+<button class="wishlist-btn" onclick="toggleWishlist(this)">♡</button>
 
-    </div>
-    `;
-  });
+</div>
+`;
+});
 }
-
 
 
 // 🔍 SEARCH
 function searchProducts(){
 const value = document.getElementById("search").value.toLowerCase();
-const filtered = products.filter(p => p.name.toLowerCase().includes(value));
+const filtered = products.filter(p =>
+p.name.toLowerCase().includes(value)
+);
 displayProducts(filtered);
 }
 
@@ -166,8 +170,7 @@ displayProducts(filtered);
 }
 
 
-// 🚀 INITIAL LOAD
-displayProducts(products);
+// ❤️ WISHLIST
 function toggleWishlist(btn){
 btn.classList.toggle("active");
 
@@ -177,3 +180,7 @@ btn.innerText = "♥";
 btn.innerText = "♡";
 }
 }
+
+
+// 🚀 INITIAL LOAD
+displayProducts(products);
