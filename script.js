@@ -7,81 +7,17 @@ const products = [
 {name:"Calligraphy Ink Brush",price:417,category:"brush",image:"https://i.pinimg.com/1200x/e9/42/3f/e9423fe7377fbde8f0a6e6c9b071377f.jpg",rating:"★★★★★",badge:"Popular"},
 {name:"Paint Gloves",price:120,category:"tool",image:"https://www.xencelabs.com/store/Uploads/goods/20211222/0fbd34c96b9e458090ab8e09528bb772.jpg",rating:"★★★★☆",badge:"Popular"}
 ];
-// 🎨 EXTRA PRODUCTS
-{
-name:"Acrylic Paint Set",
-price:299,
-category:"color",
-image:"https://m.media-amazon.com/images/I/71Kx2F7R5AL._SL1500_.jpg",
-rating:"★★★★★",
-badge:"Popular"
-},
-{
-name:"Watercolor Paint Kit",
-price:250,
-category:"color",
-image:"https://m.media-amazon.com/images/I/81hJvH8sX-L._SL1500_.jpg",
-rating:"★★★★☆"
-},
-{
-name:"Canvas Board Pack",
-price:180,
-category:"tool",
-image:"https://m.media-amazon.com/images/I/71xS6tK0XyL._SL1500_.jpg",
-rating:"★★★★☆"
-},
-{
-name:"Drawing Pencil Set",
-price:120,
-category:"tool",
-image:"https://m.media-amazon.com/images/I/71Q9rXy7GQL._SL1500_.jpg",
-rating:"★★★★★",
-badge:"Best Seller"
-},
-{
-name:"Charcoal Pencil Set",
-price:150,
-category:"tool",
-image:"https://m.media-amazon.com/images/I/61F5pFQX6cL._SL1000_.jpg",
-rating:"★★★★☆"
-},
-{
-name:"Oil Pastels",
-price:90,
-category:"color",
-image:"https://m.media-amazon.com/images/I/71M8+3kV6TL._SL1500_.jpg",
-rating:"★★★★☆"
-},
-{
-name:"Sketching Kit Combo",
-price:350,
-category:"book",
-image:"https://m.media-amazon.com/images/I/81YzK+z+5JL._SL1500_.jpg",
-rating:"★★★★★",
-badge:"Popular"
-},
-{
-name:"Mini Easel Stand",
-price:220,
-category:"tool",
-image:"https://m.media-amazon.com/images/I/71z3l9cR5lL._SL1500_.jpg",
-rating:"★★★★☆"
-},
-{
-name:"Calligraphy Ink Set",
-price:270,
-category:"brush",
-image:"https://m.media-amazon.com/images/I/71o4k6Jc4JL._SL1500_.jpg",
-rating:"★★★★★"
-},
-{
-name:"Brush Cleaner Cup",
-price:80,
-category:"tool",
-image:"https://m.media-amazon.com/images/I/61WqF0K7GGL._SL1000_.jpg",
-rating:"★★★★☆"
-}
-let cart = [];
+// 🎨 EXTRA PRODUCTS (NOW FIXED INSIDE ARRAY)
+{name:"Acrylic Paint Set",price:299,category:"color",image:"https://m.media-amazon.com/images/I/71Kx2F7R5AL._SL1500_.jpg",rating:"★★★★★",badge:"Popular"},
+{name:"Watercolor Paint Kit",price:250,category:"color",image:"https://m.media-amazon.com/images/I/81hJvH8sX-L._SL1500_.jpg",rating:"★★★★☆"},
+{name:"Canvas Board Pack",price:180,category:"tool",image:"https://m.media-amazon.com/images/I/71xS6tK0XyL._SL1500_.jpg",rating:"★★★★☆"},
+{name:"Drawing Pencil Set",price:120,category:"tool",image:"https://m.media-amazon.com/images/I/71Q9rXy7GQL._SL1500_.jpg",rating:"★★★★★",badge:"Best Seller"},
+{name:"Charcoal Pencil Set",price:150,category:"tool",image:"https://m.media-amazon.com/images/I/61F5pFQX6cL._SL1000_.jpg",rating:"★★★★☆"},
+{name:"Oil Pastels",price:90,category:"color",image:"https://m.media-amazon.com/images/I/71M8+3kV6TL._SL1500_.jpg",rating:"★★★★☆"},
+{name:"Sketching Kit Combo",price:350,category:"book",image:"https://m.media-amazon.com/images/I/81YzK+z+5JL._SL1500_.jpg",rating:"★★★★★",badge:"Popular"},
+{name:"Mini Easel Stand",price:220,category:"tool",image:"https://m.media-amazon.com/images/I/71z3l9cR5lL._SL1500_.jpg",rating:"★★★★☆"},
+{name:"Calligraphy Ink Set",price:270,category:"brush",image:"https://m.media-amazon.com/images/I/71o4k6Jc4JL._SL1500_.jpg",rating:"★★★★★"},
+{name:"Brush Cleaner Cup",price:80,category:"tool",image:"https://m.media-amazon.com/images/I/61WqF0K7GGL._SL1000_.jpg",rating:"★★★★☆"}
 
 // ADD TO CART
 function addToCart(name,price){
