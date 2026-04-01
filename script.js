@@ -144,18 +144,7 @@ list.forEach(p => {
     `;
   });
 }
-container.innerHTML += `
-<div class="product" data-category="${p.category}">
-${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
-<h3>${p.name}</h3>
-<img src="${p.image}">
-<p>₹${p.price}</p>
-<div>${p.rating}</div>
-<button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
-</div>
-`;
-});
-}
+
 
 
 // 🔍 SEARCH
