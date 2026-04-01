@@ -119,6 +119,29 @@ const container = document.getElementById("product-list");
 container.innerHTML = "";
 
 list.forEach(p => {
+  container.innerHTML += `
+    <div class="product" data-category="${p.category}">
+
+    ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
+
+    <img src="${p.image}">
+
+    <h4>${p.name}</h4>
+
+    <p class="price">
+    ₹${p.price}
+    <span class="old-price">₹${p.price + 100}</span>
+    <span class="discount">50% OFF</span>
+    </p>
+
+    <div class="rating">${p.rating}</div>
+
+    <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+
+    <button class="wishlist-btn" onclick="toggleWishlist(this)">♡</button>
+
+    </div>
+    `;
 container.innerHTML += `
 <div class="product" data-category="${p.category}">
 ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
