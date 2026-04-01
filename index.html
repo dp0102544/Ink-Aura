@@ -6,135 +6,131 @@
 <title>Ink & Aura</title>
 
 <script src="https://unpkg.com/parse/dist/parse.min.js"></script>
-<link rel="stylesheet" href="style.css">
 
 <style>
 
-/* RESET */
+/* 🌸 PREMIUM LAVENDER THEME */
+:root{
+  --primary:#9f7aea;
+  --secondary:#6c63ff;
+  --light:#f5f3ff;
+  --card:#ffffff;
+}
+
+/* BODY */
 body{
   margin:0;
-  font-family: Arial;
-  background:#f5f5f5;
+  font-family: 'Segoe UI', sans-serif;
+  background:var(--light);
 }
 
 /* NAVBAR */
 .navbar{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  padding:12px 20px;
-  background:white;
-  box-shadow:0 2px 5px rgba(0,0,0,0.1);
-  position:sticky;
-  top:0;
-  z-index:1000;
+  align-items:center;
+  padding:15px;
+  background:var(--card);
+  box-shadow:0 4px 12px rgba(0,0,0,0.08);
 }
 
 .logo{
-  font-size:20px;
+  font-size:22px;
   font-weight:bold;
+  color:var(--primary);
 }
 
 .search-bar{
   width:40%;
-  padding:8px;
-  border-radius:5px;
-  border:1px solid #ccc;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid #ddd;
 }
 
-.nav-right{
-  display:flex;
-  gap:15px;
-  align-items:center;
-  cursor:pointer;
-}
-
-/* CATEGORY SCROLL */
+/* CATEGORY */
 .category-scroll{
   display:flex;
   gap:10px;
   padding:10px;
-  overflow-x:auto;
   background:white;
+  overflow-x:auto;
 }
 
 .category-btn{
   background:#eee;
-  padding:8px 12px;
+  padding:8px 14px;
   border-radius:20px;
   cursor:pointer;
-  white-space:nowrap;
+}
+
+.category-btn:hover{
+  background:var(--primary);
+  color:white;
 }
 
 /* BANNER */
 .banner{
-  background:#ff4081;
+  background:linear-gradient(135deg,#9f7aea,#6c63ff);
   color:white;
   text-align:center;
-  padding:25px;
+  padding:30px;
 }
 
-/* PRODUCTS GRID */
+/* PRODUCTS */
 .products{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:15px;
+  gap:20px;
   padding:20px;
 }
 
-/* PRODUCT CARD */
 .product{
   background:white;
-  border-radius:10px;
-  padding:10px;
+  border-radius:15px;
+  padding:15px;
   text-align:center;
-  position:relative;
+  box-shadow:0 5px 15px rgba(0,0,0,0.08);
   transition:0.3s;
 }
 
 .product:hover{
-  transform:scale(1.03);
+  transform:translateY(-5px);
 }
 
 .product img{
   width:100%;
   height:150px;
   object-fit:cover;
-  border-radius:5px;
+  border-radius:10px;
 }
 
 .product button{
-  background:#ff4081;
+  background:var(--primary);
   color:white;
   border:none;
-  padding:8px;
+  padding:10px;
   margin-top:5px;
-  border-radius:5px;
+  border-radius:6px;
   cursor:pointer;
-  width:100%;
 }
 
 .badge{
   position:absolute;
   top:10px;
   left:10px;
-  background:red;
+  background:var(--secondary);
   color:white;
-  padding:3px 6px;
-  font-size:12px;
-  border-radius:5px;
+  padding:4px 8px;
+  border-radius:6px;
 }
 
 /* CART */
 .cart-overlay{
   position:fixed;
-  top:0;
-  left:0;
   width:100%;
   height:100%;
   background:rgba(0,0,0,0.5);
   display:none;
-  z-index:999;
 }
 
 .cart-overlay.active{
@@ -150,11 +146,20 @@ body{
   background:white;
   padding:20px;
   transition:0.3s;
-  z-index:1000;
 }
 
 .cart-drawer.active{
   right:0;
+}
+
+/* BUTTON FIX */
+.checkout-btn{
+  width:100%;
+  padding:10px;
+  background:var(--primary);
+  color:white;
+  border:none;
+  border-radius:5px;
 }
 
 /* TRUST */
@@ -169,7 +174,7 @@ body{
 footer{
   text-align:center;
   padding:20px;
-  background:#222;
+  background:#1f1f1f;
   color:white;
 }
 
@@ -178,21 +183,16 @@ footer{
 
 <body>
 
-<!-- 🔝 NAVBAR -->
 <header class="navbar">
-
 <div class="logo">🛍️ Ink & Aura</div>
 
 <input type="text" id="search" placeholder="Search products..." class="search-bar" onkeyup="searchProducts()">
 
-<div class="nav-right">
-<span onclick="openLogin()">👤 Login</span>
+<div>
 <span onclick="openCart()">🛒 <span id="cart-count">0</span></span>
 </div>
-
 </header>
 
-<!-- 🎯 CATEGORY SCROLL -->
 <div class="category-scroll">
 <div class="category-btn" onclick="filterCategory('all')">All</div>
 <div class="category-btn" onclick="filterCategory('brush')">Brushes</div>
@@ -201,40 +201,27 @@ footer{
 <div class="category-btn" onclick="filterCategory('tool')">Tools</div>
 </div>
 
-<!-- 🎯 BANNER -->
 <section class="banner">
-<h2>🔥 Big Sale on Art Supplies</h2>
-<p>Up to 50% OFF</p>
+<h2>🔥 Premium Art Store</h2>
+<p>Elegant • Creative • Affordable</p>
 </section>
 
 <h2 style="text-align:center;">Trending Products</h2>
 
-<!-- 🛍️ PRODUCTS (DYNAMIC) -->
 <div class="products" id="product-list"></div>
 
-<!-- 🛒 CART -->
 <div class="cart-overlay" onclick="closeCart()"></div>
 
 <div class="cart-drawer">
-
-<div class="cart-header">
 <h3>Your Cart 🛒</h3>
-<button onclick="closeCart()">✖</button>
-</div>
-
 <ul id="cart-items"></ul>
+<p id="cart-total"></p>
 
-<div class="cart-footer">
-<p id="cart-total">Total: ₹0</p>
-</div>
-
-<button onclick="checkout()" style="width:100%;padding:10px;background:#ff4081;color:white;border:none;border-radius:5px;">
+<button onclick="checkout()" class="checkout-btn">
 Place Order
 </button>
-
 </div>
 
-<!-- TRUST -->
 <section class="trust">
 <div>🔒 Secure Checkout</div>
 <div>🚚 Fast Delivery</div>
@@ -242,10 +229,8 @@ Place Order
 <div>⭐ 4.8/5 Rating</div>
 </section>
 
-<!-- FOOTER -->
 <footer>
 <p>© 2025 Ink & Aura</p>
-<p>Owner: Dhara Patel</p>
 </footer>
 
 <script src="script.js"></script>
