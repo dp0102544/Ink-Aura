@@ -53,7 +53,65 @@ rating: "★★★★☆",
 badge: "Popular"
 }
 ];
+// 🛒 CART ARRAY
+let cart = [];
 
+// ADD TO CART
+function addToCart(name, price){
+cart.push({name, price});
+updateCart();
+}
+
+// UPDATE CART UI
+function updateCart(){
+const list = document.getElementById("cart-items");
+const total = document.getElementById("cart-total");
+const count = document.getElementById("cart-count");
+
+list.innerHTML = "";
+
+let sum = 0;
+
+cart.forEach((item, index) => {
+sum += item.price;
+
+list.innerHTML += `
+<li>
+${item.name} - ₹${item.price}
+<button onclick="removeItem(${index})">❌</button>
+</li>
+`;
+});
+
+total.innerText = "Total: ₹" + sum;
+count.innerText = cart.length;
+}
+
+// REMOVE ITEM
+function removeItem(index){
+cart.splice(index,1);
+updateCart();
+}
+
+// OPEN CART
+function openCart(){
+document.querySelector(".cart-drawer").classList.add("active");
+document.querySelector(".cart-overlay").classList.add("active");
+}
+
+// CLOSE CART
+function closeCart(){
+document.querySelector(".cart-drawer").classList.remove("active");
+document.querySelector(".cart-overlay").classList.remove("active");
+}
+
+// CHECKOUT
+function checkout(){
+alert("Order placed successfully!");
+cart = [];
+updateCart();
+closeCart();
+}
 
 // 📦 LOAD PRODUCTS
 function displayProducts(list){
