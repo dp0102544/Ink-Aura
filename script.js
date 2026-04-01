@@ -154,3 +154,12 @@ displayProducts(filtered);
 
 // 🚀 INITIAL LOAD
 displayProducts(products);
+function toggleWishlist(btn){
+btn.classList.toggle("active");
+
+if(btn.classList.contains("active")){
+btn.innerText = "♥";
+}else{
+btn.innerText = "♡";
+}
+}
