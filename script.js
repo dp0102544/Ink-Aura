@@ -13,23 +13,14 @@ const products = [
  // EXTRA PRODUCTS (WORKING IMAGES)
 [
 {name:"Acrylic Paint Set",price:4867,category:"color",image:"https://images.pexels.com/photos/3062217/pexels-photo-3062217.jpeg",rating:"★★★★★",badge:"Popular"},
-
 {name:"Watercolor Paint Kit",price:450,category:"color",image:"https://images.pexels.com/photos/102127/pexels-photo-102127.jpeg",rating:"★★★★☆"},
-
 {name:"Canvas Board Pack",price:180,category:"tool",image:"https://images.pexels.com/photos/209067/pexels-photo-209067.jpeg",rating:"★★★★☆"},
-
 {name:"Drawing Pencil Set",price:120,category:"tool",image:"https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg",rating:"★★★★★",badge:"Best Seller"},
-
 {name:"Charcoal Pencil Set",price:150,category:"tool",image:"https://images.pexels.com/photos/636243/pexels-photo-636243.jpeg",rating:"★★★★☆"},
-
 {name:"Oil Pastels",price:90,category:"color",image:"https://images.pexels.com/photos/207665/pexels-photo-207665.jpeg",rating:"★★★★☆"},
-
 {name:"Sketching Kit Combo",price:350,category:"book",image:"https://images.pexels.com/photos/261763/pexels-photo-261763.jpeg",rating:"★★★★★",badge:"Popular"},
-
 {name:"Mini Easel Stand",price:220,category:"tool",image:"https://images.pexels.com/photos/1646953/pexels-photo-1646953.jpeg",rating:"★★★★☆"},
-
 {name:"Calligraphy Ink Set",price:270,category:"brush",image:"https://images.pexels.com/photos/261510/pexels-photo-261510.jpeg",rating:"★★★★★"},
-
 {name:"Brush Cleaner Cup",price:80,category:"tool",image:"https://images.pexels.com/photos/2762247/pexels-photo-2762247.jpeg",rating:"★★★★☆"}
 ];
   // 🛒 CART
