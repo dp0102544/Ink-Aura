@@ -19,7 +19,7 @@ rating: "★★★★☆"
 name: "Crayon",
 price: 50,
 category: "color",
-image: "https://m.media-amazon.com/images/I/71s7H7qzL2L._SL1500_.jpg",
+image: "https://domsindia.com/wp-content/uploads/2022/08/DOMS-Long-Wax-Crayons-12-Shades.jpg",
 rating: "★★★★☆"
 },
 {
