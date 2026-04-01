@@ -1,38 +1,43 @@
-/* 🌸 PREMIUM LAVENDER THEME */
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ink & Aura</title>
+
+<script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+
+<style>
+
+/* 🌸 LAVENDER THEME */
 :root{
-  --primary: #9f7aea;       /* main lavender */
-  --secondary: #6c63ff;     /* deep purple */
-  --light: #f5f3ff;         /* soft background */
-  --card: #ffffff;
-  --text: #2d2d2d;
-  --muted: #888;
+  --primary:#9f7aea;
+  --secondary:#6c63ff;
+  --light:#f5f3ff;
+  --card:#ffffff;
 }
 
-/* RESET */
+/* BODY */
 body{
   margin:0;
   font-family: 'Segoe UI', sans-serif;
-  background: var(--light);
-  color: var(--text);
+  background:var(--light);
 }
 
 /* NAVBAR */
 .navbar{
   display:flex;
-  align-items:center;
   justify-content:space-between;
-  padding:14px 25px;
-  background: var(--card);
-  box-shadow:0 4px 15px rgba(0,0,0,0.08);
-  position:sticky;
-  top:0;
-  z-index:1000;
+  align-items:center;
+  padding:15px;
+  background:white;
+  box-shadow:0 4px 10px rgba(0,0,0,0.1);
 }
 
 .logo{
   font-size:22px;
   font-weight:bold;
-  color: var(--primary);
+  color:var(--primary);
 }
 
 .search-bar{
@@ -40,161 +45,179 @@ body{
   padding:10px;
   border-radius:8px;
   border:1px solid #ddd;
-  outline:none;
-}
-
-.search-bar:focus{
-  border-color: var(--primary);
 }
 
 /* CATEGORY */
 .category-scroll{
   display:flex;
   gap:10px;
-  padding:12px;
+  padding:10px;
   overflow-x:auto;
-  background: var(--card);
+  background:white;
 }
 
 .category-btn{
-  background: #eee;
+  background:#eee;
   padding:8px 14px;
   border-radius:20px;
   cursor:pointer;
-  transition:0.3s;
 }
 
 .category-btn:hover{
-  background: var(--primary);
+  background:var(--primary);
   color:white;
 }
 
 /* BANNER */
 .banner{
-  background: linear-gradient(135deg, #9f7aea, #6c63ff);
+  background:linear-gradient(135deg,#9f7aea,#6c63ff);
   color:white;
   text-align:center;
-  padding:35px;
-  border-radius:0 0 20px 20px;
+  padding:30px;
 }
 
-/* PRODUCTS GRID */
+/* PRODUCTS */
 .products{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
   gap:20px;
   padding:20px;
 }
 
 /* PRODUCT CARD */
 .product{
-  background: var(--card);
+  background:white;
   border-radius:15px;
   padding:15px;
   text-align:center;
-  box-shadow:0 5px 20px rgba(0,0,0,0.08);
+  box-shadow:0 5px 15px rgba(0,0,0,0.1);
   transition:0.3s;
 }
 
 .product:hover{
-  transform: translateY(-6px);
+  transform:translateY(-5px);
 }
 
-/* IMAGE */
 .product img{
   width:100%;
-  height:160px;
+  height:150px;
   object-fit:cover;
   border-radius:10px;
 }
 
-/* TITLE */
-.product h4{
-  margin:10px 0 5px;
-}
-
-/* PRICE */
 .price{
   font-weight:bold;
-  margin:5px 0;
 }
 
 .old-price{
   text-decoration:line-through;
-  color: var(--muted);
+  color:gray;
   font-size:12px;
-  margin-left:5px;
 }
 
 .discount{
   color:green;
   font-size:12px;
-  margin-left:5px;
 }
 
-/* RATING */
-.rating{
-  color:#f59e0b;
-  margin:5px 0;
-}
-
-/* BUTTON */
 .product button{
-  background: var(--primary);
+  background:var(--primary);
   color:white;
   border:none;
   padding:10px;
-  margin-top:8px;
-  border-radius:8px;
-  cursor:pointer;
-  transition:0.3s;
-}
-
-.product button:hover{
-  background: var(--secondary);
-}
-
-/* WISHLIST */
-.wishlist-btn{
-  background:#ede7f6;
-  color: var(--primary);
-}
-
-.wishlist-btn.active{
-  background: var(--primary);
-  color:white;
-}
-
-/* BADGE */
-.badge{
-  position:absolute;
-  top:10px;
-  left:10px;
-  background: var(--secondary);
-  color:white;
-  padding:4px 8px;
-  font-size:12px;
+  margin-top:5px;
   border-radius:6px;
+  cursor:pointer;
 }
 
 /* CART */
-.cart-drawer{
-  background:white;
+.cart-overlay{
+  position:fixed;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+  display:none;
 }
 
-/* TRUST */
-.trust{
-  display:flex;
-  justify-content:space-around;
+.cart-overlay.active{
+  display:block;
+}
+
+.cart-drawer{
+  position:fixed;
+  right:-350px;
+  top:0;
+  width:350px;
+  height:100%;
   background:white;
   padding:20px;
-  border-top:1px solid #eee;
+  transition:0.3s;
+}
+
+.cart-drawer.active{
+  right:0;
 }
 
 /* FOOTER */
 footer{
   text-align:center;
   padding:20px;
-  background:#1f1f1f;
+  background:#222;
   color:white;
 }
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<header class="navbar">
+<div class="logo">🛍️ Ink & Aura</div>
+
+<input type="text" id="search" placeholder="Search products..." class="search-bar" onkeyup="searchProducts()">
+
+<div>
+<span onclick="openCart()">🛒 <span id="cart-count">0</span></span>
+</div>
+</header>
+
+<!-- CATEGORY -->
+<div class="category-scroll">
+<div class="category-btn" onclick="filterCategory('all')">All</div>
+<div class="category-btn" onclick="filterCategory('brush')">Brushes</div>
+<div class="category-btn" onclick="filterCategory('color')">Colors</div>
+<div class="category-btn" onclick="filterCategory('book')">Books</div>
+<div class="category-btn" onclick="filterCategory('tool')">Tools</div>
+</div>
+
+<!-- BANNER -->
+<section class="banner">
+<h2>🔥 Premium Art Store</h2>
+<p>Elegant • Creative • Affordable</p>
+</section>
+
+<h2 style="text-align:center;">Products</h2>
+
+<!-- PRODUCTS -->
+<div class="products" id="product-list"></div>
+
+<!-- CART -->
+<div class="cart-overlay" onclick="closeCart()"></div>
+
+<div class="cart-drawer">
+<h3>Your Cart</h3>
+<ul id="cart-items"></ul>
+<p id="cart-total"></p>
+<button onclick="checkout()">Place Order</button>
+</div>
+
+<!-- FOOTER -->
+<footer>
+<p>© 2025 Ink & Aura</p>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
