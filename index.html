@@ -1,204 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Ink & Aura</title>
+<!-- 🔝 MODERN NAVBAR -->
+<header class="navbar">
 
-<!-- Parse SDK -->
-<script src="https://unpkg.com/parse/dist/parse.min.js"></script>
+  <div class="logo">🛍️ Ink & Aura</div>
 
-<link rel="stylesheet" href="style.css">
-</head>
+  <input
+    type="text"
+    id="search"
+    placeholder="Search for products..."
+    onkeyup="searchProducts()"
+    class="search-bar"
+  >
 
-<body>
-
-<nav>
-<a href="index.html">Home</a>
-<a href="#" onclick="openLogin()">Login</a>
-<a href="signup.html">Signup</a>
-<a href="dashboard.html">Dashboard</a>
-</nav>
-
-<!-- LOGIN LINK -->
-<a href="#" onclick="openLogin()" style="position:absolute; right:20px; top:20px;">Login</a>
-
-<!-- HEADER -->
-<header class="top-bar">
-
-<div class="logo">🛍️ Ink & Aura</div>
-
-<div class="filters">
-<button onclick="filterCategory('all')" class="active">All</button>
-<button onclick="filterCategory('brush')">Brushes</button>
-<button onclick="filterCategory('color')">Colors</button>
-<button onclick="filterCategory('book')">Books</button>
-<button onclick="filterCategory('tool')">Tools</button>
-</div>
-
-<div class="search-container">
-<input
-type="text"
-id="search"
-placeholder="Search products..."
-onkeyup="searchProducts()">
-<span class="search-icon">🔍</span>
-</div>
-
-<div class="cart-info" onclick="openCart()" style="cursor:pointer;">
-🛒 <span id="cart-count">0</span>
-</div>
+  <div class="nav-icons">
+    <span onclick="openCart()">🛒 <span id="cart-count">0</span></span>
+    <span onclick="openLogin()">👤 Login</span>
+  </div>
 
 </header>
 
-<!-- CATEGORIES -->
-<section class="browse-categories">
-<div class="category-card" onclick="filterCategory('brush')">🎨 Brushes</div>
-<div class="category-card" onclick="filterCategory('color')">🖍 Colors</div>
-<div class="category-card" onclick="filterCategory('book')">📘 Sketch Books</div>
-<div class="category-card" onclick="filterCategory('tool')">🧤 Tools</div>
+
+<!-- 🎯 BANNER -->
+<section class="banner">
+  <h2>🔥 Big Sale on Art Supplies</h2>
+  <p>Up to 50% OFF</p>
 </section>
-
-<h2 style="text-align:center;">Products</h2>
-
-<!-- CART DRAWER -->
-<div class="cart-overlay" onclick="closeCart()"></div>
-
-<div class="cart-drawer">
-
-<div class="cart-header">
-<h3>Your Cart 🛒</h3>
-<button onclick="closeCart()">✖</button>
-</div>
-
-<ul id="cart-items"></ul>
-
-<div class="cart-footer">
-<p id="cart-total"></p>
-</div>
-
-<button onclick="checkout()" style="margin-top:20px;width:100%;">
-Place Order
-</button>
-
-</div>
-
-<button onclick="window.location.href='checkout.html'"
-style="display:block;margin:20px auto;">
-Proceed to Checkout
-</button>
-
-<!-- PRODUCTS -->
-<div class="products">
-
-<div class="product" data-category="book">
-<span class="badge">Popular</span>
-<h3>Sketch Book</h3>
-<img src="https://i.pinimg.com/736x/7a/44/55/7a4455115fbf5d63d10c0dc021aee328.jpg">
-<p>₹100</p>
-<div class="product-rating">★★★★☆</div>
-<button onclick="addToCart('Sketch Book',100)">Add to Cart</button>
-<button class="wishlist-btn" onclick="toggleWishlist(this)">♡ Wishlist</button>
-</div>
-
-<div class="product" data-category="color">
-<h3>Doms Colour Pencil</h3>
-<img src="https://storage.googleapis.com/shy-pub/303834/1701666310690_SKU-0367_0.jpg">
-<p>₹90</p>
-<div class="product-rating">★★★★☆</div>
-<button onclick="addToCart('Doms Colour Pencil',90)">Add to Cart</button>
-<button class="wishlist-btn" onclick="toggleWishlist(this)">♡ Wishlist</button>
-</div>
-
-<div class="product" data-category="color">
-<h3>Crayon</h3>
-<img src="https://domsindia.com/wp-content/uploads/2022/08/DOMS-Long-Wax-Crayons-12-Shades.jpg">
-<p>₹50</p>
-<div class="product-rating">★★★★☆</div>
-<button onclick="addToCart('Crayon',50)">Add to Cart</button>
-<button class="wishlist-btn" onclick="toggleWishlist(this)">♡ Wishlist</button>
-</div>
-
-<div class="product" data-category="brush">
-<h3>Paint Brush</h3>
-<img src="https://m.media-amazon.com/images/I/815M6utnCVL._AC_SL1500_.jpg">
-<p>₹95</p>
-<div class="product-rating">★★★★☆</div>
-<button onclick="addToCart('Paint Brush',95)">Add to Cart</button>
-<button class="wishlist-btn" onclick="toggleWishlist(this)">♡ Wishlist</button>
-</div>
-
-<div class="product" data-category="brush">
-<h3>Ink Brush</h3>
-<img src="https://i.pinimg.com/1200x/94/43/27/944327ccfc0b48f83905f17885d8720c.jpg">
-<p>₹399</p>
-<div class="product-rating">★★★★☆</div>
-<button onclick="addToCart('Ink Brush',399)">Add to Cart</button>
-<button class="wishlist-btn" onclick="toggleWishlist(this)">♡ Wishlist</button>
-</div>
-
-<div class="product" data-category="brush">
-<span class="badge">Popular</span>
-<h3>Calligraphy Ink Brush</h3>
-<img src="https://i.pinimg.com/1200x/e9/42/3f/e9423fe7377fbde8f0a6e6c9b071377f.jpg">
-<p>₹417</p>
-<div class="product-rating">★★★★★</div>
-<button onclick="addToCart('Calligraphy Ink Brush',417)">Add to Cart</button>
-<button class="wishlist-btn" onclick="toggleWishlist(this)">♡ Wishlist</button>
-</div>
-
-<div class="product" data-category="tool">
-<span class="badge">Popular</span>
-<h3>Paint Gloves</h3>
-<img src="https://www.xencelabs.com/store/Uploads/goods/20211222/0fbd34c96b9e458090ab8e09528bb772.jpg">
-<p>₹120</p>
-<div class="product-rating">★★★★☆</div>
-<button onclick="addToCart('Paint Gloves',120)">Add to Cart</button>
-<button class="wishlist-btn" onclick="toggleWishlist(this)">♡ Wishlist</button>
-</div>
-
-</div>
-
-<!-- TRUST SECTION -->
-<section class="trust">
-<div>🔒 Secure Checkout</div>
-<div>🚚 Fast Delivery</div>
-<div>↩️ Easy Returns</div>
-<div>⭐ 4.8/5 Customer Rating</div>
-</section>
-
-<!-- LOGIN POPUP -->
-<div id="loginModal" class="login-modal">
-
-<div class="login-box">
-
-<span class="close-login" onclick="closeLogin()">✖</span>
-
-<h2>Welcome Back</h2>
-<p>Login to Ink & Aura</p>
-
-<input type="text" id="loginUsername" placeholder="Username">
-<input type="password" id="loginPassword" placeholder="Password">
-
-<button onclick="loginUser()">Login</button>
-
-<p style="margin-top:10px;">
-Don't have an account?
-<a href="signup.html">Signup</a>
-</p>
-
-</div>
-
-</div>
-
-<!-- FOOTER -->
-<footer>
-<p>© 2025 Ink & Aura</p>
-<p>Owner: Dhara Patel</p>
-</footer>
-
-<!-- MAIN SCRIPT -->
-<script src="script.js"></script>
-
-</body>
-</html>
