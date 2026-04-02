@@ -54,14 +54,14 @@ const products = [
     rating: "★★★★☆",
     badge: "Popular"
   },
-  {
-    name: "Acrylic Paint Set",
-    price: 4867,
-    category: "color",
-    image: https:"images.meesho.com/images/products/658724233/g41fy_512.avif?width=360",
-    rating: "★★★★★",
-    badge: "Popular"
-  },
+{
+  name: "Acrylic Paint Set",
+  price: 4867,
+  category: "color",
+  image: "https://images.meesho.com/images/products/658724233/g41fy_512.avif?width=360",
+  rating: "★★★★★",
+  badge: "Popular"
+}
   {
     name: "Watercolor Paint Kit",
     price: 450,
