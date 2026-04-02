@@ -64,7 +64,7 @@ const products = [
     name: "Watercolor Paint Kit",
     price: 450,
     category: "color",
-    image: "https://m.media-amazon.com/images/I/71Q9VQ2g4EL._SL1500_.jpg",
+    image:"https:m.media-amazon.com/images/I/81-vuICjs3L.jpg",
     rating: "★★★★☆"
   },
   {
