@@ -58,7 +58,7 @@ const products = [
     name: "Acrylic Paint Set",
     price: 4867,
     category: "color",
-    image: "C:\Users\Dhara\Downloads\BRUSTRO Acrylic Paint Set of 24 - Multicolour 12ml Tubes + Gold Taklon Brush Set of 10_Buy now ! – BrustroShop.html",
+    image: "https://images.meesho.com/images/products/784983508/cerht_512.avif",
     rating: "★★★★★",
     badge: "Popular"
   },
