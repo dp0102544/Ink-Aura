@@ -17,13 +17,7 @@ const products = [
     image: "https://storage.googleapis.com/shy-pub/303834/1701666310690_SKU-0367_0.jpg",
     rating: "★★★★☆"
   },
-  {
-    name: "Crayon",
-    price: 50,
-    category: "color",
-    image: "https://domsindia.com/wp-content/uploads/2022/08/DOMS-Long-Wax-Crayons-12-Shades.jpg",
-    rating: "★★★★☆"
-  },
+ 
   {
     name: "Paint Brush",
     price: 95,
@@ -54,79 +48,7 @@ const products = [
     rating: "★★★★☆",
     badge: "Popular"
   },
-{
-  name: "Acrylic Paint Set",
-  price: 4867,
-  category: "color",
-  image: "https://images.meesho.com/images/products/658724233/g41fy_512.avif?width=360",
-  rating: "★★★★★",
-  badge: "Popular"
-}
-  {
-    name: "Watercolor Paint Kit",
-    price: 450,
-    category: "color",
-    image: "https://m.media-amazon.com/images/I/71Q9VQ2g4EL._SL1500_.jpg",
-    rating: "★★★★☆"
-  },
-  {
-    name: "Canvas Board Pack",
-    price: 180,
-    category: "tool",
-    image: "https://m.media-amazon.com/images/I/81W8z9Q0YUL._SL1500_.jpg",
-    rating: "★★★★☆"
-  },
-  {
-    name: "Drawing Pencil Set",
-    price: 120,
-    category: "tool",
-    image: "https://m.media-amazon.com/images/I/71cJ0b5q4kL._SL1500_.jpg",
-    rating: "★★★★★",
-    badge: "Best Seller"
-  },
-  {
-    name: "Charcoal Pencil Set",
-    price: 150,
-    category: "tool",
-    image: "https://m.media-amazon.com/images/I/61oS9WcF7dL._SL1500_.jpg",
-    rating: "★★★★☆"
-  },
-  {
-    name: "Oil Pastels",
-    price: 90,
-    category: "color",
-    image: "https://m.media-amazon.com/images/I/71y9Q9gk9LL._SL1500_.jpg",
-    rating: "★★★★☆"
-  },
-  {
-    name: "Sketching Kit Combo",
-    price: 350,
-    category: "book",
-    image: "https://m.media-amazon.com/images/I/81vpsIs58WL._SL1500_.jpg",
-    rating: "★★★★★",
-    badge: "Popular"
-  },
-  {
-    name: "Mini Easel Stand",
-    price: 220,
-    category: "tool",
-    image: "https://m.media-amazon.com/images/I/61mS7yF5vXL._SL1500_.jpg",
-    rating: "★★★★☆"
-  },
-  {
-    name: "Calligraphy Ink Set",
-    price: 270,
-    category: "brush",
-    image: "https://m.media-amazon.com/images/I/71pZ2F8JHLL._SL1500_.jpg",
-    rating: "★★★★★"
-  },
-  {
-    name: "Brush Cleaner Cup",
-    price: 80,
-    category: "tool",
-    image: "https://m.media-amazon.com/images/I/61QWZ9l6KFL._SL1500_.jpg",
-    rating: "★★★★☆"
-  }
+
 ];
   // 🛒 CART
 let cart = [];
