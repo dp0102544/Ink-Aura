@@ -108,7 +108,7 @@ const products = [
     name: "Mini Easel Stand",
     price: 220,
     category: "tool",
-    image:" https://m.media-amazon.com/images/I/81SNo8p5nrL._AC_SL1500_.jpg",
+    image:"https://m.media-amazon.com/images/I/81SNo8p5nrL._AC_SL1500_.jpg",
     rating: "★★★★☆"
   },
   {
