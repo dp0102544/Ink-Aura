@@ -58,7 +58,7 @@ const products = [
     name: "Acrylic Paint Set",
     price: 4867,
     category: "color",
-    image: "https://images.meesho.com/images/products/784983508/cerht_512.avif",
+    image: https:"images.meesho.com/images/products/658724233/g41fy_512.avif?width=360",
     rating: "★★★★★",
     badge: "Popular"
   },
