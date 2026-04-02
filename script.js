@@ -1,6 +1,4 @@
-// 🛍️ PRODUCT DATA (ALL FIXED)
-const products = [
-// 🛍️ PRODUCT DATA (ALL FIXED)
+// 🛍️ PRODUCT DATA
 const products = [
   {
     name: "Sketch Book",
@@ -17,7 +15,13 @@ const products = [
     image: "https://storage.googleapis.com/shy-pub/303834/1701666310690_SKU-0367_0.jpg",
     rating: "★★★★☆"
   },
- 
+  {
+    name: "Crayon",
+    price: 50,
+    category: "color",
+    image: "https://domsindia.com/wp-content/uploads/2022/08/DOMS-Long-Wax-Crayons-12-Shades.jpg",
+    rating: "★★★★☆"
+  },
   {
     name: "Paint Brush",
     price: 95,
@@ -48,102 +52,169 @@ const products = [
     rating: "★★★★☆",
     badge: "Popular"
   },
-
+  {
+    name: "Acrylic Paint Set",
+    price: 4867,
+    category: "color",
+    image: "https://images.meesho.com/images/products/784983508/cerht_512.avif",
+    rating: "★★★★★",
+    badge: "Popular"
+  },
+  {
+    name: "Watercolor Paint Kit",
+    price: 450,
+    category: "color",
+    image: "https://m.media-amazon.com/images/I/71Q9VQ2g4EL._SL1500_.jpg",
+    rating: "★★★★☆"
+  },
+  {
+    name: "Canvas Board Pack",
+    price: 180,
+    category: "tool",
+    image: "https://m.media-amazon.com/images/I/81W8z9Q0YUL._SL1500_.jpg",
+    rating: "★★★★☆"
+  },
+  {
+    name: "Drawing Pencil Set",
+    price: 120,
+    category: "tool",
+    image: "https://m.media-amazon.com/images/I/71cJ0b5q4kL._SL1500_.jpg",
+    rating: "★★★★★",
+    badge: "Best Seller"
+  },
+  {
+    name: "Charcoal Pencil Set",
+    price: 150,
+    category: "tool",
+    image: "https://m.media-amazon.com/images/I/61oS9WcF7dL._SL1500_.jpg",
+    rating: "★★★★☆"
+  },
+  {
+    name: "Oil Pastels",
+    price: 90,
+    category: "color",
+    image: "https://m.media-amazon.com/images/I/71y9Q9gk9LL._SL1500_.jpg",
+    rating: "★★★★☆"
+  },
+  {
+    name: "Sketching Kit Combo",
+    price: 350,
+    category: "book",
+    image: "https://m.media-amazon.com/images/I/81vpsIs58WL._SL1500_.jpg",
+    rating: "★★★★★",
+    badge: "Popular"
+  },
+  {
+    name: "Mini Easel Stand",
+    price: 220,
+    category: "tool",
+    image: "https://m.media-amazon.com/images/I/61mS7yF5vXL._SL1500_.jpg",
+    rating: "★★★★☆"
+  },
+  {
+    name: "Calligraphy Ink Set",
+    price: 270,
+    category: "brush",
+    image: "https://m.media-amazon.com/images/I/71pZ2F8JHLL._SL1500_.jpg",
+    rating: "★★★★★"
+  },
+  {
+    name: "Brush Cleaner Cup",
+    price: 80,
+    category: "tool",
+    image: "https://m.media-amazon.com/images/I/61QWZ9l6KFL._SL1500_.jpg",
+    rating: "★★★★☆"
+  }
 ];
-  // 🛒 CART
+
+// 🛒 CART
 let cart = [];
 
 // ADD TO CART
-function addToCart(name,price){
-cart.push({name,price});
-updateCart();
+function addToCart(name, price) {
+  cart.push({name, price});
+  updateCart();
 }
 
 // UPDATE CART
-function updateCart(){
-let list=document.getElementById("cart-items");
-let total=document.getElementById("cart-total");
-let count=document.getElementById("cart-count");
+function updateCart() {
+  const list = document.getElementById("cart-items");
+  const total = document.getElementById("cart-total");
+  const count = document.getElementById("cart-count");
 
-list.innerHTML="";
-let sum=0;
+  list.innerHTML = "";
+  let sum = 0;
 
-cart.forEach((item,i)=>{
-sum+=item.price;
-list.innerHTML+=`<li>${item.name} - ₹${item.price} <button onclick="removeItem(${i})">❌</button></li>`;
-});
+  cart.forEach((item, i) => {
+    sum += item.price;
+    list.innerHTML += `<li>${item.name} - ₹${item.price} <button onclick="removeItem(${i})">❌</button></li>`;
+  });
 
-total.innerText="Total: ₹"+sum;
-count.innerText=cart.length;
+  total.innerText = "Total: ₹" + sum;
+  count.innerText = cart.length;
 }
 
-// REMOVE
-function removeItem(i){
-cart.splice(i,1);
-updateCart();
+// REMOVE ITEM
+function removeItem(i) {
+  cart.splice(i, 1);
+  updateCart();
 }
 
-// CART
-function openCart(){
-document.querySelector(".cart-drawer").classList.add("active");
-document.querySelector(".cart-overlay").classList.add("active");
+// CART DRAWER
+function openCart() {
+  document.querySelector(".cart-drawer").classList.add("active");
+  document.querySelector(".cart-overlay").classList.add("active");
 }
 
-function closeCart(){
-document.querySelector(".cart-drawer").classList.remove("active");
-document.querySelector(".cart-overlay").classList.remove("active");
+function closeCart() {
+  document.querySelector(".cart-drawer").classList.remove("active");
+  document.querySelector(".cart-overlay").classList.remove("active");
 }
 
 // CHECKOUT
-function checkout(){
-alert("Order placed!");
-cart=[];
-updateCart();
-closeCart();
+function checkout() {
+  alert("Order placed!");
+  cart = [];
+  updateCart();
+  closeCart();
 }
 
 // DISPLAY PRODUCTS
-function displayProducts(list){
-let container=document.getElementById("product-list");
-container.innerHTML="";
+function displayProducts(list) {
+  const container = document.getElementById("product-list");
+  container.innerHTML = "";
 
-list.forEach(p=>{
-let oldPrice=p.price+100;
+  list.forEach(p => {
+    const oldPrice = p.price + 100;
 
-container.innerHTML+=`
-<div class="product">
-
-${p.badge?`<span class="badge">${p.badge}</span>`:""}
-
-<img src="${p.image}">
-<h4>${p.name}</h4>
-
-<p class="price">
-₹${p.price}
-<span class="old-price">₹${oldPrice}</span>
-<span class="discount">50% OFF</span>
-</p>
-
-<div>${p.rating}</div>
-
-<button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
-
-</div>
-`;
-});
+    container.innerHTML += `
+      <div class="product">
+        ${p.badge ? `<span class="badge">${p.badge}</span>` : ""}
+        <img src="${p.image}" alt="${p.name}">
+        <h4>${p.name}</h4>
+        <p class="price">
+          ₹${p.price}
+          <span class="old-price">₹${oldPrice}</span>
+          <span class="discount">50% OFF</span>
+        </p>
+        <div>${p.rating}</div>
+        <button onclick="addToCart('${p.name}',${p.price})">Add to Cart</button>
+      </div>
+    `;
+  });
 }
 
 // SEARCH
-function searchProducts(){
-let val=document.getElementById("search").value.toLowerCase();
-displayProducts(products.filter(p=>p.name.toLowerCase().includes(val)));
+function searchProducts() {
+  const val = document.getElementById("search").value.toLowerCase();
+  displayProducts(products.filter(p => p.name.toLowerCase().includes(val)));
 }
 
 // FILTER
-function filterCategory(cat){
-if(cat==="all") displayProducts(products);
-else displayProducts(products.filter(p=>p.category===cat));
+function filterCategory(cat) {
+  if (cat === "all") displayProducts(products);
+  else displayProducts(products.filter(p => p.category === cat));
 }
 
-// LOAD
+// LOAD PRODUCTS
 displayProducts(products);
