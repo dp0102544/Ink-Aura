@@ -71,7 +71,7 @@ const products = [
     name: "Canvas Board Pack",
     price: 180,
     category: "tool",
-    image: "https://m.media-amazon.com/images/I/81W8z9Q0YUL._SL1500_.jpg",
+    image: ,
     rating: "★★★★☆"
   },
   {
@@ -122,7 +122,7 @@ const products = [
     name: "Brush Cleaner Cup",
     price: 80,
     category: "tool",
-    image: "https://m.media-amazon.com/images/I/61QWZ9l6KFL._SL1500_.jpg",
+    image:"https://m.media-amazon.com/images/I/71IMXPJdLKL._AC_SL1500_.jpg",
     rating: "★★★★☆"
   }
 ];
